@@ -10,7 +10,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: elm
+    types: elem
 jobs:
   build:
 
@@ -37,7 +37,7 @@ jobs:
           npm install
       - name: '运行 【饿了么】'
         run: |
-          node elm.js
+          node elem.js
         env:
           COOKIE_ELEM: ${{ secrets.COOKIE_ELEM }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
