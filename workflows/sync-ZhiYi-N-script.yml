@@ -1,4 +1,4 @@
-name: sync-ZhiYi-N-script
+name: sync-mantou5050-N-script
 on:
   schedule:
     - cron: '0 */4 * * *'
@@ -18,11 +18,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync ZhiYi-N-script
+      - name: sync mantou5050-N-script
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/ZhiYi-N/script.git"
+          source_repo: "https://github.com/mantou5050/zaqi.git"
           source_branch: "master"
-          destination_branch: "main"
+          destination_branch: "master"
           github_token: ${{ secrets.PAT }}
