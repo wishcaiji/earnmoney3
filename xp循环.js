@@ -121,12 +121,10 @@ if (!videoheaderArr[0]) {
     $.msg($.name, '【提示】请先获取笑谱一cookie')
     return;
   }
-
- 
- //==============自定义循环==========================
-  if ($.isNode()) {
-    while(true){
-
+   
+  //循环
+ if ($.isNode()) {
+  while(true){
    console.log(`------------- 共${videoheaderArr.length}个账号----------------\n`)
   for (let i = 0; i < videoheaderArr.length; i++) {
     if (videoheaderArr[i]) {
@@ -143,41 +141,38 @@ if (!videoheaderArr[0]) {
       await status()
       await control()
       //await withdraw()
-      await watch_livevideo()
+      //await watch_livevideo()
       await showmsg()
   }
  }
-
-console.log(`========================本次任务执行完毕，休息1分钟==============================\n`);
-      await $.wait(30000)
+      console.log(`========================本次任务执行完毕，休息1分钟==============================\n`);
+      await $.wait(90000)
 
     }
   }else{
-
    console.log(`------------- 共${videoheaderArr.length}个账号----------------\n`)
   for (let i = 0; i < videoheaderArr.length; i++) {
     if (videoheaderArr[i]) {
       message = ''
-      videoheader = videoheaderArr[i];
+      signheader = videoheaderArr[i];
       videobody = videobodyArr[i];
-      goldbody = goldbodyArr[i];
       $.index = i + 1;
       console.log(`\n开始【笑谱${$.index}】`)
-      //await invite()
+     //await invite()
       await getNowFormatDate()
       await profit()
       await balance()
       await status()
       await control()
       //await withdraw()
-      await watch_livevideo()
+      //await watch_livevideo()
       await showmsg()
   }
  }
 
-
   }
  //==============自定义循环==========================
+
 
 })()
     .catch((e) => $.logErr(e))
@@ -203,7 +198,7 @@ if($request.body.indexOf('isFinishWatch')&&$request.body.indexOf('"type":2')>=0)
  }
  }
 async function control(){
-   /*if(coins >= 1 && hour == 0){
+   /*if(coins >= 1 && hour == 21){
       await withdraw();
 }*/
    if(goldbody && gold == 1){
@@ -243,6 +238,18 @@ return new Promise((resolve, reject) => {
         if(logs)$.log(data)
      let num = data.match(/"type":1/i)? data.match(/"type":1/ig).length : 0
      $.log('xpvideo'+num)
+     if(result.errorCode == 'GATEWAY-TOKEN-003'){
+       $.msg('⏰提示：多账号请保持所有账号登录状态，不要退出登录；单账号，请更新header\n')
+       $.done()
+      }
+var random = ''
+for(let i = 1;i<=7;i++){
+  const No = Math.round(Math.random()*9)
+     random += No;
+}
+video = '134869212528'+random
+$.log(video)
+     //if(num == 0) $.msg('token过期，请重新获取header')
      if(num >= 5){gold = 1}
      //message += '🎉当前金币余额'+result.data[0].totalCoinAmt+'\n'
           resolve()
@@ -251,8 +258,6 @@ return new Promise((resolve, reject) => {
   } 
 //video
 function watch_video() {
-video = '13'+Math.floor(Math.random()*123456789101112131)
-$.log(video)
 return new Promise((resolve, reject) => {
   let watch_videourl ={
     url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_gold_coin_by_video.json`,
@@ -279,8 +284,6 @@ return new Promise((resolve, reject) => {
   } 
 //goldvideo
 function watch_goldvideo() {
-video = '13'+Math.floor(Math.random()*123456789101112131)
-$.log(video)
 return new Promise((resolve, reject) => {
   let watch_goldvideourl ={
     url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_gold_coin_by_video.json`,
@@ -324,8 +327,8 @@ return new Promise((resolve, reject) => {
   } 
 //livevideo
 function watch_livevideo() {
-let liveids = liveid.replace(/\d{3}$/,Math.floor(Math.random()*1000));
-$.log(liveids)
+let liveids = liveid.replace(/\d{3}$/,Math.round((Math.random() > 0.1 ? Math.random() : (Math.random()+0.1)) *1000));
+$.log('livesid:'+liveids)
 return new Promise((resolve, reject) => {
   let watch_livevideourl ={
     url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_redbag_by_live.json`,
