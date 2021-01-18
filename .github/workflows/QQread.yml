@@ -22,7 +22,7 @@ jobs:
           npm install
       - name: "运行【QQ阅读】"
         run: |
-          node QQread.js
+          node QQreadAPP.js
         env:
           QQREAD_COOKIE: ${{ secrets.QQREAD_COOKIE }}
           QQREADER_COOKIE: ${{ secrets.QQREADER_COOKIE }}
