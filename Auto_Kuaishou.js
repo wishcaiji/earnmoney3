@@ -42,7 +42,7 @@ let ksUrl = [], ksArr = [];
       $.index = i + 1;
     console.log(`-------------------------\n\n开始快手极速版第${$.index}个视频`)
     }
-     for (let j = 0; j < 5; j++) {
+     for (let j = 0; j < 7; j++) {
       await AutoRead();
       await $.wait(10000);
       console.log(`\n  请等待10s后继续视频${$.index}第${j+1}次任务`)
