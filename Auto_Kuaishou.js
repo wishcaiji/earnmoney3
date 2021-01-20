@@ -60,9 +60,9 @@ function AutoRead(){
     headers: {
       'Accept-Encoding' : `gzip, deflate`,
       'Connection' : `keep-alive`,
-      'Accept' : `image/*,*/*;q=0.8`,
+      'Accept' : `image/*,*/*`,
       'Host' : `ali2.a.yximgs.com`,
-      'User-Agent' : `com_kwai_nebula/9.0.20`,
+      'User-Agent' : `kwai-ios`,
       'Accept-Language' : `zh-Hans-CN;q=1, en-CN;q=0.9, zh-Hant-CN;q=0.8`},
 };
   $.get(myRequest, (error, response, data) => {
