@@ -35,6 +35,7 @@ jobs:
           npm install
       - name: '运行 【步步宝】'
         run: |
+          cd ~/zaqi
           node BBB.js
         env:
           TZ: Asia/shanghai
