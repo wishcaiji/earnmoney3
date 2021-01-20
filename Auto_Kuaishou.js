@@ -59,8 +59,8 @@ function AutoRead(){
     url: playUrl,
     headers: {
       'Accept-Encoding' : `gzip, deflate`,
-      'Connection' : `keep-alive`,
-      'Accept' : `image/*,*/*`,
+      'Connection' : `close`,
+      'Accept' : `application/json`,
       'Host' : `ali2.a.yximgs.com`,
       'User-Agent' : `kwai-ios`,
       'Accept-Language' : `zh-Hans-CN;q=1, en-CN;q=0.9, zh-Hant-CN;q=0.8`},
