@@ -41,7 +41,7 @@ const $ = new Env('步步寶')
 let notice = ''
 //let CookieVal = $.getdata('bbb_ck')
 
-let CookieVal = '{"tokenstr":"444F8F23C1E528FCCBF3B0D97526140G1611103234","Connection":"keep-alive","Accept-Encoding":"gzip, deflate, br","version":"10","idfa":"218E7EEE-4C49-44CF-9F11-EB08C4E7A043","User-Agent":"BBB/132 CFNetwork/1197 Darwin/20.0.0","platform":"2","imei":"4E2AEC39-1D47-4B4C-863D-8DF84E8F558D","Cookie":"PHPSESSID=t1mbcgsno94ehdhv60criqhqh7"}'
+let CookieVal = '{"store":"appstore","tokenstr":"444F8F23C1E528FCCBF3B0D97526140G1611103234","Connection":"keep-alive","Accept-Encoding":"gzip, deflate, br","version":"10","idfa":"218E7EEE-4C49-44CF-9F11-EB08C4E7A043","User-Agent":"BBB/132 CFNetwork/1197 Darwin/20.0.0","platform":"2","imei":"4E2AEC39-1D47-4B4C-863D-8DF84E8F558D","Cookie":"PHPSESSID=t1mbcgsno94ehdhv60criqhqh7","Host":"bububao.duoshoutuan.com","Accept-Language":"zh-cn","Accept":"*/*","Content-Length":"0"}'
 
 if ($.isNode()) {
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
