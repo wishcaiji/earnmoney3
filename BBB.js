@@ -1,7 +1,10 @@
 /*
+
 adwktt
 轉載備註名字
+
 打开App获取Cookie
+
 下載地址：http://bububao.yichengw.cn/?id=524855
 
 圈x
@@ -16,11 +19,14 @@ loon
 [Script]
 http-request https://bububao.duoshoutuan.com/user/profile script-path= https://raw.githubusercontent.com/adwktt/adwktt/master/BBB.js, timeout=10, tag= 步步宝
 
-cron "0 8-23/2 * * *" script-path= https://raw.githubusercontent.com/adwktt/adwktt/master/BBB.js, tag= 步步宝
+cron "0 8-23/2 * * *" script-path= https://raw.githubusercontent.com/adwktt/adwktt/master/yk.js, tag= 步步宝
 
 surge
-步步宝 = type=cron,cronexp="0 8-23/2 * * *",wake-system=1,script-path=https://raw.githubusercontent.com/adwktt/adwktt/master/BBB.js,script-update-interval=0
+
+步步宝 = type=cron,cronexp="0 8-23/2 * * *",wake-system=1,script-path=https://raw.githubusercontent.com/adwktt/adwktt/master/yk.js,script-update-interval=0
 步步宝 = type=http-request,pattern=https://bububao.duoshoutuan.com/user/profile,requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/adwktt/adwktt/master/BBB.js,script-update-interval=0
+
+
 
 hostname = bububao.duoshoutuan.com,
 
@@ -28,18 +34,20 @@ hostname = bububao.duoshoutuan.com,
 
 
 
+
+
+
 const $ = new Env('步步寶')
 let notice = ''
-let CookieVal = $.getdata('bbb_ck')
+//let CookieVal = $.getdata('bbb_ck')
+
+let CookieVal = '{"store":"appstore","tokenstr":"444F8F23C1E528FCCBF3B0D97526140G1611103234","Connection":"keep-alive","Accept-Encoding":"gzip, deflate, br","version":"10","idfa":"218E7EEE-4C49-44CF-9F11-EB08C4E7A043","User-Agent":"BBB/132 CFNetwork/1197 Darwin/20.0.0","platform":"2","imei":"4E2AEC39-1D47-4B4C-863D-8DF84E8F558D","Cookie":"PHPSESSID=t1mbcgsno94ehdhv60criqhqh7","Host":"bububao.duoshoutuan.com","Accept-Language":"zh-cn","Accept":"*/*","Content-Length":"0"}'
 
 if ($.isNode()) {
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
 }
 
-
-
-now = new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000);  
 
 if (typeof $request !== 'undefined') {
    if ($request && $request.method != `OPTIONS` && $request.url.indexOf('user/profile') != -1) {
@@ -55,15 +63,9 @@ if(CookieVal)$.setdata(CookieVal,'bbb_ck')
 $.msg($.name,"開始🎉🎉🎉")
 
       await userInfo()
-      await signIn()
-      await sleepStatus()
-      await checkWaterNum()
-      await clickTaskStatus()
-      await watchTaskStatus()
+      await checkDailyClickAdId()
+      await checkDailyWatchAd()
       await checkCode()
-      await getNewsId()
-      await getQuestionId()
-      await checkHomeJin()
       await showmsg()
 
 })()
@@ -105,300 +107,23 @@ return new Promise((resolve, reject) => {
           resolve()
     })
    })
-  } 
+  }
 
 
-
-
-
-function signIn() {
+function checkDailyWatchAd() {
 return new Promise((resolve, reject) => {
   let timestamp=new Date().getTime();
-  let signin ={
-    url: `https://bububao.duoshoutuan.com/user/sign`,
-    headers: JSON.parse(CookieVal),
-}
-   $.post(signin,async(error, response, data) =>{
-$.log('\n🔔開始签到\n')
-     const sign = JSON.parse(data)
-      if(sign.code == 1) {
-          $.log('\n🎉'+sign.msg+'簽到金幣+ '+sign.jinbi+'💰\n')
-      signInStr = sign.nonce_str
-          await signDouble()
-         }else{
-          $.log('\n🎉'+sign.msg+'\n')
-         }
-          resolve()
-    })
-   })
-  } 
-
-function signDouble() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let signdouble ={
-    url: `https://bububao.duoshoutuan.com/you/callback`,
-    headers: JSON.parse(CookieVal),
-    body: `nonce_str=${signInStr}&tid=2&pos=1&`,
-}
-   $.post(signdouble,async(error, response, data) =>{
-     const signin2 = JSON.parse(data)
-$.log('\n🔔開始領取每日觀看獎勵\n')
-      if(signin2.code == 1) {
-          $.log('\n🎉簽到翻倍成功\n')
-           }else{
-          $.log('\n⚠️簽到翻倍失敗敗:'+signin2.msg+'\n')
-           }
-          resolve()
-    })
-   })
-  } 
-
-function checkWaterNum() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let checkwaternum ={
-    url: `https://bububao.duoshoutuan.com/mini/water_info`,
-    headers: JSON.parse(CookieVal),
-}
-   $.post(checkwaternum,async(error, response, data) =>{
-$.log('\n🔔開始查詢喝水杯數\n')
-     const waternum = JSON.parse(data)
-      if(waternum.code == 1 && waternum.day_num < 7) {
-      waterNum = waternum.day_num
-      if(waternum.is_sp == 1){
-          $.log('\n🎉喝水前需要看廣告喔！,1s後開始看廣告\n')
-          await $.wait(1000)
-          await checkWaterSp()
-         }else{
-          $.log('\n🎉查詢成功,1s後領取喝水獎勵\n')
-          await $.wait(1000)
-          await waterClick()
-         }}else{
-          $.log('\n⚠️喝水失敗: 今日喝水已上限\n')
-         }
-          resolve()
-    })
-   })
-  } 
-
-function checkWaterSp() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let checksp ={
-    url: `https://bububao.duoshoutuan.com/user/chuansj`,
-    headers: JSON.parse(CookieVal),
-    body: `mini_pos=2&c_type=1&`,
-}
-   $.post(checksp,async(error, response, data) =>{
-     const sp = JSON.parse(data)
-      if(sp.code == 1) {
-      waterSpStr = sp.nonce_str
-          await WaterSp()
-           }
-          resolve()
-    })
-   })
-  } 
-
-function WaterSp() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let watersp ={
-    url: `https://bububao.duoshoutuan.com/mini/water_sp`,
-    headers: JSON.parse(CookieVal),
-    body: `day_num=${waterNum}&`,
-}
-   $.post(watersp,async(error, response, data) =>{
-     const spwater = JSON.parse(data)
-      if(spwater.code == 1) {
-          $.log('\n🎉正在觀看喝水廣告, 30後領取喝水獎勵\n')
-          await $.wait(30000)
-          await waterClick()
-           }
-          resolve()
-    })
-   })
-  } 
-
-function waterClick() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let waterclick ={
-    url: `https://bububao.duoshoutuan.com/mini/water_click`,
-    headers: JSON.parse(CookieVal),
-    body: `day_num=0${waterNum}&`,
-}
-   $.post(waterclick,async(error, response, data) =>{
-     const clickwater = JSON.parse(data)
-$.log('\n🔔開始領取喝水獎勵\n')
-      if(clickwater.code == 1) {
-          $.log('\n🎉'+clickwater.msg+'喝水金幣+ '+clickwater.jinbi+'💰\n')
-           }else{
-          $.log('\n⚠️喝水失敗:'+clickwater.msg+'\n')
-           }
-          resolve()
-    })
-   })
-  } 
-
-
-function sleepStatus() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let sleepstatus ={
-    url: `https://bububao.duoshoutuan.com/mini/sleep_info`,
-    headers: JSON.parse(CookieVal),
-}
-   $.post(sleepstatus,async(error, response, data) =>{
-$.log('\n🔔開始查詢睡覺狀態\n')
-     const slpstatus = JSON.parse(data)
-      if(slpstatus.code == 1) {
-      if(slpstatus.is_lq == 1) {
-      sleepStr = slpstatus.nonce_str
-      sleepId = slpstatus.taskid
-     }
-      if(slpstatus.is_sleep == 0 && now.getHours() >= 20) {
-$.msg('🔔都幾點了，還不睡？5s後開始睡覺！')
-          await $.wait(5000)
-          await sleepStart()
-         }else if(slpstatus.is_sleep == 1 && now.getHours() >= 8 && now.getHours() <= 9){
-$.msg('🔔都幾點了，還不起？5s後準備起床！')
-          await $.wait(5000)
-          await sleepEnd()
-         }else if(slpstatus.is_sleep == 1 && now.getHours() >= 22){
-          $.msg('⚠️睡覺的時候不要玩手機！！！')
-         }else if(slpstatus.is_sleep == 0 &&
-now.getHours() >= 18){
-          $.msg('😘這麼早就準備睡覺了嗎？是身體不舒服嗎？要保重身體呀！')
-         }}
-          resolve()
-    })
-   })
-  } 
-
-
-function sleepStart() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let sleepstart ={
-    url: `https://bububao.duoshoutuan.com/mini/sleep_start`,
-    headers: JSON.parse(CookieVal),
-}
-   $.post(sleepstart,async(error, response, data) =>{
-     const startsleep = JSON.parse(data)
-$.log('\n🔔開始睡覺\n')
-      if(startsleep.code == 1) {
-          $.log('\n🎉睡覺成功！早睡早起身體好！\n')
-           }else{
-          $.log('\n⚠️睡覺失敗敗:'+startsleep.msg+'\n')
-           }
-          resolve()
-    })
-   })
-  } 
-
-function sleepEnd() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let sleepend ={
-    url: `https://bububao.duoshoutuan.com/mini/sleep_end`,
-    headers: JSON.parse(CookieVal),
-}
-   $.post(sleepend,async(error, response, data) =>{
-     const endsleep = JSON.parse(data)
-$.log('\n🔔開始起床\n')
-      if(endsleep.code == 1) {
-          $.log('\n🎉起床了！別睡了！\n')
-          await sleepDone()
-           }else{
-          $.log('\n⚠️起床失敗敗:'+endsleep.msg+'\n')
-           }
-          resolve()
-    })
-   })
-  } 
-
-function sleepDone() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let sleepdone ={
-    url: `https://bububao.duoshoutuan.com/mini/sleep_end`,
-    headers: JSON.parse(CookieVal),
-    body: `taskid=${sleepId}&nonce_str=${sleepStr}&`
-}
-   $.post(sleepdone,async(error, response, data) =>{
-     const donesleep = JSON.parse(data)
-$.log('\n🔔開始領取睡覺金幣\n')
-      if(donesleep.code == 1) {
-          $.log('\n🎉'+donesleep.msg+'金幣+ '+donesleep.jinbi+'💰\n')
-           }else{
-          $.log('\n⚠️領取睡覺金幣失敗敗:'+donesleep.msg+'\n')
-           }
-          resolve()
-    })
-   })
-  } 
-
-function clickTaskStatus() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let clicktaskstatus ={
-    url: `https://bububao.duoshoutuan.com/user/renwu`,
-    headers: JSON.parse(CookieVal),
-    body: `idfa=${JSON.parse(CookieVal)['idfa']}&`,
-}
-   $.post(clicktaskstatus,async(error, response, data) =>{
-     const clicktask = JSON.parse(data)
-      if(clicktask.first.admobile_st != 2) {
-$.log('\n🔔開始查詢每日點擊任務狀態\n')
-          await checkDailyClickAdId()
-         }else{
-          $.log('\n⚠️每日點擊廣告任務已上限\n')
-         }
-       resolve()
-    })
-   })
-  } 
-
-function watchTaskStatus() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let watchtaskstatus ={
-    url: `https://bububao.duoshoutuan.com/user/renwu`,
-    headers: JSON.parse(CookieVal),
-    body: `idfa=${JSON.parse(CookieVal)['idfa']}&`,
-}
-   $.post(watchtaskstatus,async(error, response, data) =>{
-     const watchtask = JSON.parse(data)
-$.log('\n🔔開始查詢每日觀看廣告任務狀態\n')
-       if(watchtask.v_st != 2) {
-$.log('\n🔔每日觀看廣告任務狀態查詢成功,1s後查詢每日觀看廣告ID\n')
-          await $.wait(1000)
-          await checkDailyWatchAdId()
-         }else{
-          $.log('\n⚠️每日看廣告任務已上限\n')
-         }
-       resolve()
-    })
-   })
-  } 
-
-
-function checkDailyWatchAdId() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let checkdailywatchadid ={
+  let checkdailywatchad ={
     url: `https://bububao.duoshoutuan.com/user/chuansj`,
     headers: JSON.parse(CookieVal),
     body: `mini_pos=0&c_type=1&`,
 }
-   $.post(checkdailywatchadid,async(error, response, data) =>{
-$.log('\n🔔開始查詢每日觀看廣告ID\n')
-     const dailywatchid = JSON.parse(data)
-      if(dailywatchid.code == 1) {
-      dailyWatchStr = dailywatchid.nonce_str
-         // $.log('\n'+dailyWatchStr+'\n')
+   $.post(checkdailywatchad,async(error, response, data) =>{
+$.log('\n🔔開始查詢每日觀看ID\n')
+     const dailywatch = JSON.parse(data)
+      if(dailywatch.code == 1) {
+      dailyWatchStr = dailywatch.nonce_str
+          //$.log('\n'+dailyWatchStr+'\n')
           $.log('\n🎉查詢成功,30s後領取獎勵\n')
           await $.wait(30000)
           await DailyWatchAd()
@@ -406,8 +131,7 @@ $.log('\n🔔開始查詢每日觀看廣告ID\n')
           resolve()
     })
    })
-  } 
-
+  }
 
 function DailyWatchAd() {
 return new Promise((resolve, reject) => {
@@ -421,23 +145,16 @@ return new Promise((resolve, reject) => {
      const dailywatch = JSON.parse(data)
 $.log('\n🔔開始領取每日觀看獎勵\n')
       if(dailywatch.code == 1) {
-          $.log('\n🎉每日觀看獎勵領取成功,5m(300s)後查詢下一次廣告\n')
-          for(let i=1;i<=60;i++){
-              (function(){
-                  setTimeout(() => {
-                    $.log('\n🎉請等待'+(60-i)*5+'s後查詢下一次廣告\n')
-                  }, 5000*i);
-              })()
-          }
+          $.log('\n🎉每日觀看獎勵領取成功,5m後查詢下一次廣告\n')
           await $.wait(300000)
-          await watchTaskStatus()
+          await checkDailyWatchAd()
            }else{
           $.log('\n⚠️每日獎勵領取失敗:'+dailywatch.msg+'\n')
            }
           resolve()
     })
    })
-  } 
+  }
 
 function checkDailyClickAdId() {
 return new Promise((resolve, reject) => {
@@ -459,7 +176,7 @@ $.log('\n🔔開始查詢每日廣告ID\n')
           resolve()
     })
    })
-  } 
+  }
 
 
 function checkDailyClickAd() {
@@ -483,7 +200,7 @@ $.log('\n🔔開始查詢每日廣告點擊ID\n')
           resolve()
     })
    })
-  } 
+  }
 
 function DailyClickAd() {
 return new Promise((resolve, reject) => {
@@ -499,14 +216,14 @@ $.log('\n🔔開始領取每日點擊獎勵\n')
       if(dailyclick.code == 1) {
           $.log('\n🎉每日點擊獎勵領取成功,1s後查詢下一次廣告ID\n')
           await $.wait(1000)
-          await clickTaskStatus()
+          await checkDailyClickAdId()
            }else{
           $.log('\n⚠️每日點擊領取失敗:'+dailyclick.msg+'\n')
            }
           resolve()
     })
    })
-  } 
+  }
 
 
 
@@ -518,29 +235,19 @@ return new Promise((resolve, reject) => {
     headers: JSON.parse(CookieVal),
 }
    $.post(checkhomejin,async(error, response, data) =>{
+$.log('\n🔔開始查詢首頁金幣狀態\n')
      const checkhomejb = JSON.parse(data)
      if(checkhomejb.right_st == 0){
-$.log('\n🔔開始查詢首頁金幣狀態\n')
           await homeJin()
-         }else if(checkhomejb.jindan_show == 0){
-$.log('\n🔔開始查詢首頁金蛋狀態\n')
-$.log(typeof checkhomejb.jindan_djs)
-          await $.wait(checkhomejb.jindan_djs)
-          await checkGoldEggId()
-         }else if(checkhomejb.hb_time >= 0){
-$.log('\n🔔開始查詢首頁紅包狀態\n')
-          await $.wait(checkhomejb.hb_time*1000)
-          await checkRedBagId()
-         }else if(checkhomejb.hb_time < 0){
-$.log('\n🔔開始查詢首頁紅包狀態\n')
-          await checkRedBagId()
+         }else if(checkhomejb.right_st == 1){
+          await checkHomeGold()
          }else{
 $.log('\n🔔首頁金幣狀態:'+checkhomejb.right_text+'\n🔔首頁紅包狀態:'+checkhomejb.hb_text+'\n🔔首頁金蛋狀態:'+checkhomejb.jindan_text+'\n')
          }
           resolve()
     })
    })
-  } 
+  }
 
 function checkHomeRedbag() {
 return new Promise((resolve, reject) => {
@@ -563,7 +270,7 @@ $.log('\n🔔開始查詢首頁紅包狀態\n')
           resolve()
     })
    })
-  } 
+  }
 
 function checkHomeGold() {
 return new Promise((resolve, reject) => {
@@ -583,11 +290,11 @@ $.log('\n🔔開始查詢首頁金蛋狀態\n')
          }else if(checkhomegd.jindan_show == 1){
           await checkHomeJin()
          }
-        
+
           resolve()
     })
    })
-  } 
+  }
 
 function homeJin() {
 return new Promise((resolve, reject) => {
@@ -611,7 +318,7 @@ $.log('\n🔔開始領取首頁金幣\n')
           resolve()
     })
    })
-  } 
+  }
 
 
 
@@ -628,14 +335,14 @@ return new Promise((resolve, reject) => {
 $.log('\n🔔開始翻倍首頁金幣\n')
       if(hmjcallback.code == 1) {
           $.log('\n🎉首頁金幣翻倍成功\n')
-          await checkHomeJin()
+          await checkHomeRedbag()
            }else{
           $.log('\n🔔首頁金幣翻倍失敗'+hmjcallback.msg+'\n')
            }
           resolve()
     })
    })
-  } 
+  }
 
 function checkRedBagId() {
 return new Promise((resolve, reject) => {
@@ -657,7 +364,7 @@ $.log('\n🔔開始查詢首頁紅包ID\n')
           resolve()
     })
    })
-  } 
+  }
 
 function redBagCallback() {
 return new Promise((resolve, reject) => {
@@ -672,15 +379,15 @@ return new Promise((resolve, reject) => {
 $.log('\n🔔開始領取首頁紅包\n')
       if(redbag.code == 1) {
           $.log('\n🎉首頁紅包領取成功\n')
-          await checkHomeJin()
+          await checkHomeGold()
            }else{
           $.log('\n⚠️首頁紅包領取失敗:'+redbag.msg+'\n')
-          await checkHomeJin()
+          await checkHomeGold()
            }
           resolve()
     })
    })
-  } 
+  }
 
 function checkGoldEggId() {
 return new Promise((resolve, reject) => {
@@ -691,22 +398,18 @@ return new Promise((resolve, reject) => {
 }
    $.post(checkgoldeggid,async(error, response, data) =>{
 $.log('\n🔔開始查詢首頁金蛋ID\n')
-     const goldeggid = JSON.parse(data)
-      if(goldeggid.code == 1) {
-$.log('\n🔔開始查詢首頁金蛋ID\n')
+     const goldegg = JSON.parse(data)
+      if(goldegg.code == 1) {
       goldEggStr = goldegg.nonce_str
          // $.log('\n'+goldEggStr+'\n')
       goldEggId = goldegg.taskid
          // $.log('\n'+goldEggId+'\n')
           await goldEggDone()
-           }else{
-          $.log('\n⚠️首頁金蛋失敗:'+goldeggid.msg+'\n')
-          await checkHomeJin()
-        }
+           }
           resolve()
     })
    })
-  } 
+  }
 
 function goldEggDone() {
 return new Promise((resolve, reject) => {
@@ -714,10 +417,10 @@ return new Promise((resolve, reject) => {
   let goldeggdone ={
     url: `https://bububao.duoshoutuan.com/user/jindan_done`,
     headers: JSON.parse(CookieVal),
-    body: `taskid=${goldEggId}&clicktime=${timestamp}&donetime=${timestamp}+1000&nonce_str=${goldEggStr}&`
+    body: `taskid=${goldEggId}&clicktime=${timestamp}&donetime=${timestamp}+100&nonce_str=${goldEggStr}&`
 }
    $.post(goldeggdone,async(error, response, data) =>{
-$.log('\n🔔開始領取首頁金蛋獎勵\n')
+$.log('\n🔔開始領取首頁金蛋\n')
      const goldegg2 = JSON.parse(data)
       if(goldegg2.code == 1) {
           $.log('\n🎉首頁金蛋:'+goldegg2.msg+'\n金幣+ '+goldegg2.jinbi+'\n')
@@ -729,7 +432,7 @@ $.log('\n🔔開始領取首頁金蛋獎勵\n')
           resolve()
     })
    })
-  } 
+  }
 
 function goldEggCallback() {
 return new Promise((resolve, reject) => {
@@ -752,29 +455,7 @@ $.log('\n🔔開始翻倍首頁金蛋\n')
           resolve()
     })
    })
-  } 
-
-function helpStatus() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let helpstatus ={
-    url: `https://bububao.duoshoutuan.com/user/help_index`,
-    headers: JSON.parse(CookieVal),
-}
-   $.post(helpstatus,async(error, response, data) =>{
-     const help = JSON.parse(data)
-$.log('\n🔔開始查詢助力視頻狀態\n')
-      if(help.btn_st != 1) {
-$.log('\n🔔查詢助力視頻狀態成功, 1s後獲取助力視頻ID\n')
-          await checkCode()
-           }else{
-$.log('\n🔔今日助力已上限,請明天再試!\n')
-           }
-          resolve()
-    })
-   })
-  } 
-
+  }
 
 function checkCode() {
 return new Promise((resolve, reject) => {
@@ -786,16 +467,15 @@ return new Promise((resolve, reject) => {
 }
    $.post(checkcode,async(error, response, data) =>{
      const code = JSON.parse(data)
-$.log('\n🔔開始查詢助力視頻ID\n')
       if(code.code == 1) {
       nonce_str = code.nonce_str
-$.log('\n🔔查詢助力視頻ID成功, 開始觀看助力視頻\n')
+          //$.log('\n'+nonce_str+'\n')
           await helpClick()
            }
           resolve()
     })
    })
-  } 
+  }
 
 
 function helpClick() {
@@ -808,18 +488,19 @@ return new Promise((resolve, reject) => {
 }
    $.post(helpclick,async(error, response, data) =>{
      const help = JSON.parse(data)
+$.log('\n🔔開始觀看助力視頻\n')
       if(help.code == 1) {
-$.log('\n🔔開始觀看助力視頻, 60s後領取助力視頻獎勵\n')
-          await $.wait(60000)
-          $.log('\n🎉觀看助力視頻成功, 1s後領取金幣+ '+help.jinbi+'\n')
+          $.log('\n🎉觀看助力視頻成功: '+help.jinbi+'\n')
+          await $.wait(30000)
           await callBack()
            }else{
           $.log('\n⚠️觀看助力視頻失敗: '+help.msg+'\n')
+          await getNewsId()
            }
           resolve()
     })
    })
-  } 
+  }
 
 
 
@@ -835,16 +516,15 @@ return new Promise((resolve, reject) => {
      const back = JSON.parse(data)
 $.log('\n🔔開始領取助力視頻獎勵\n')
       if(back.code == 1) {
-          $.log('\n🎉領取助力視頻獎勵成功,1s後查詢下一次助力視頻狀態\n')
-          await $.wait(1000)
-          await helpStatus()
+          $.log('\n🎉助力視頻獎勵成功\n')
+          await checkCode()
            }else{
           $.log('\n⚠️助力視頻獎勵失敗:'+back.msg+'\n')
            }
           resolve()
     })
    })
-  } 
+  }
 
 function getNewsId() {
 return new Promise((resolve, reject) => {
@@ -856,23 +536,23 @@ return new Promise((resolve, reject) => {
 }
    $.post(getnewsid,async(error, response, data) =>{
      const newsid = JSON.parse(data)
+$.log('\n🔔開始查詢新聞ID\n')
      if(newsid.code == 1){
-       if(newsid.is_first == 1 && newsid.is_max == 0){
-          $.log('\n🔔開始查詢新聞ID\n')
-          newsStr = newsid.nonce_str
-          $.log('\n🎉新聞ID查詢成功,15s後領取閱讀獎勵\n')
+       if(newsid.is_first == 1)
+         newsStr = newsid.nonce_str
+          $.log('\n🎉新聞ID查詢成功:'+newsStr+'\n')
+       if(newsid.is_max == 0){
           await $.wait(15000)
           await autoRead()
           }else{
-          $.log('\n⚠️閱讀失敗: 今日閱讀已上限\n')
-          await checkLuckNum()
+          await luckyClick()
          }}else{
           $.log('\n⚠️查詢新聞ID失敗:'+newsid.msg+'\n')
            }
           resolve()
     })
    })
-  } 
+  }
 
 function autoRead() {
 return new Promise((resolve, reject) => {
@@ -884,8 +564,9 @@ return new Promise((resolve, reject) => {
 }
    $.post(autoread,async(error, response, data) =>{
      const read = JSON.parse(data)
+$.log('\n🔔開始閱讀新聞\n')
       if(read.code == 1) {
-          $.log('\n🎉閱讀成功,金幣+ '+read.jinbi+'💰,開始查詢下一篇新聞ID\n')
+          $.log('\n🎉閱讀金幣+ '+read.jinbi+'💰\n')
             await getNewsId()
           }else{
           $.log('\n⚠️閱讀失敗:'+data+'\n')
@@ -893,37 +574,9 @@ return new Promise((resolve, reject) => {
           resolve()
     })
    })
-  } 
+  }
 
-function checkLuckNum() {
-return new Promise((resolve, reject) => {
-  let timestamp=new Date().getTime();
-  let lucknum ={
-    url: `https://bububao.duoshoutuan.com/user/lucky`,
-    headers: JSON.parse(CookieVal),
-}
-   $.post(lucknum,async(error, response, data) =>{
-     const num = JSON.parse(data)
-$.log('\n🔔開始查詢抽獎次數\n')
-      if(num.lucky_num != 0) {
-          $.log('\n🎉剩餘抽獎次數:'+num.lucky_num+'1s後開始抽獎\n')
-          await $.wait(1000)
-          await luckyClick()
-         }else if(num.lucky_num == 0) {
-          $.log('\n⚠️今日抽獎次數已用完,1s後查詢寶箱狀態\n')
-          await $.wait(1000)
-       for (box of num.lucky_box){
-          //$.log(box)
-          if (box != 2)
-          await luckyBox()
-          if (box == 2)
-          $.log('\n⚠️寶箱已開啟\n')
-         }
-       }
-          resolve()
-    })
-   })
-  } 
+
 
 function luckyClick() {
 return new Promise((resolve, reject) => {
@@ -938,18 +591,17 @@ $.log('\n🔔開始抽獎\n')
       if(lucky.code == 1) {
           $.log('\n🎉抽獎:'+lucky.msg+'\n金幣+ '+lucky.jinbi+'\n')
          luckyStr = lucky.nonce_str
-          //$.log('\n'+luckyStr+'\n')
-      if(lucky.jinbi != 0) {
+          $.log('\n'+luckyStr+'\n')
           await $.wait(5000)
           await luckyCallBack()
          }else{
-          await luckyClick()
+          $.log('\n⚠️抽獎失敗:'+lucky.msg+'\n')
+          await luckyBox()
          }
-       }
           resolve()
     })
    })
-  } 
+  }
 
 
 function luckyCallBack() {
@@ -973,7 +625,7 @@ $.log('\n🔔開始翻倍抽獎\n')
           resolve()
     })
    })
-  } 
+  }
 
 function luckyBox() {
 return new Promise((resolve, reject) => {
@@ -995,11 +647,12 @@ $.log('\n🔔開始打開寶箱\n')
           await luckyBoxCallBack()
          }else{
           $.log('\n⚠️寶箱失敗:'+boxlucky.msg+'\n')
+          await getQuestionId()
          }
           resolve()
     })
    })
-  } 
+  }
 
 function luckyBoxCallBack() {
 return new Promise((resolve, reject) => {
@@ -1015,14 +668,14 @@ $.log('\n🔔開始翻倍寶箱\n')
       if(boxcallback.code == 1) {
           $.log('\n🎉寶箱翻倍成功\n')
           //await $.wait(1000)
-          await checkLuckNum()
+          await luckyBox()
            }else{
           $.log('\n⚠️寶箱翻倍失敗'+boxcallback.msg+'\n')
            }
           resolve()
     })
    })
-  } 
+  }
 
 
 
@@ -1035,26 +688,26 @@ return new Promise((resolve, reject) => {
 }
    $.post(getquestionid,async(error, response, data) =>{
      const question = JSON.parse(data)
-      if(question.code == 1 && question.day_num != 0) {
 $.log('\n🔔開始查詢答題ID\n')
+      if(question.code == 1) {
          questionSite = question.site
           $.log('\n🎉答題ID1⃣️: '+questionSite+'\n')
          questionId = question.cy_id
           $.log('\n🎉答題ID2⃣️: '+questionId+'\n')
          spId = question.day_num
-          $.log('\n🎉答題視頻: '+spId+'\n')
+          $.log('\n🎉答題視頻ID: '+spId+'\n')
       if(question.is_sp == 1) {
           await $.wait(5000)
           await checkSp()
          }else{
           await answerQue()
          }}else{
-          $.log('\n⚠️查詢答題ID成功,答題失敗: 今日答題已上限\n')
+          $.log('\n⚠️獲取問題ID失敗:'+question.msg+'\n')
          }
           resolve()
     })
    })
-  } 
+  }
 
 function checkSp() {
 return new Promise((resolve, reject) => {
@@ -1075,7 +728,7 @@ return new Promise((resolve, reject) => {
           resolve()
     })
    })
-  } 
+  }
 
 function cySp() {
 return new Promise((resolve, reject) => {
@@ -1095,7 +748,7 @@ return new Promise((resolve, reject) => {
           resolve()
     })
    })
-  } 
+  }
 
 function answerQue() {
 return new Promise((resolve, reject) => {
@@ -1117,11 +770,12 @@ $.log('\n🔔開始答題\n')
           await answerQueCallBack()
          }else{
           $.log('\n⚠️答題失敗: '+answer.msg+'\n')
+          await checkHomeJin()
          }
           resolve()
     })
    })
-  } 
+  }
 
 
 function answerQueCallBack() {
@@ -1146,7 +800,7 @@ $.log('\n🔔開始翻倍答題金幣\n')
           resolve()
     })
    })
-  } 
+  }
 
 
 
@@ -1170,7 +824,7 @@ return new Promise((resolve, reject) => {
       resolve()
     })
    })
-  } 
+  }
 
 
 function doTaskH5() {
@@ -1198,7 +852,7 @@ $.log('\ndoTaskH5:'+data+'\n')
           resolve()
     })
    })})
-  } 
+  }
 
 function upLoadTime() {
 return new Promise((resolve, reject) => {
@@ -1215,7 +869,7 @@ $.log('\nupLoadTime:'+timestamp+'\n'+data+'\n')
           resolve()
     })
    })
-  } 
+  }
 
 function upLoadTime2() {
 return new Promise((resolve, reject) => {
@@ -1232,7 +886,7 @@ $.log('\nupLoadTime2:'+data+'\n')
           resolve()
     })
    })
-  } 
+  }
 
 
 
@@ -1255,7 +909,7 @@ return new Promise((resolve, reject) => {
           resolve()
     })
    })
-  } 
+  }
 
 
 function Env(t,e){class s{constructor(t){this.env=t}send(t,e="GET"){t="string"==typeof t?{url:t}:t;let s=this.get;return"POST"===e&&(s=this.post),new Promise((e,i)=>{s.call(this,t,(t,s,r)=>{t?i(t):e(s)})})}get(t){return this.send.call(this.env,t)}post(t){return this.send.call(this.env,t,"POST")}}return new class{constructor(t,e){this.name=t,this.http=new s(this),this.data=null,this.dataFile="box.dat",this.logs=[],this.isMute=!1,this.isNeedRewrite=!1,this.logSeparator="\n",this.startTime=(new Date).getTime(),Object.assign(this,e),this.log("",`\ud83d\udd14${this.name}, \u5f00\u59cb!`)}isNode(){return"undefined"!=typeof module&&!!module.exports}isQuanX(){return"undefined"!=typeof $task}isSurge(){return"undefined"!=typeof $httpClient&&"undefined"==typeof $loon}isLoon(){return"undefined"!=typeof $loon}toObj(t,e=null){try{return JSON.parse(t)}catch{return e}}toStr(t,e=null){try{return JSON.stringify(t)}catch{return e}}getjson(t,e){let s=e;const i=this.getdata(t);if(i)try{s=JSON.parse(this.getdata(t))}catch{}return s}setjson(t,e){try{return this.setdata(JSON.stringify(t),e)}catch{return!1}}getScript(t){return new Promise(e=>{this.get({url:t},(t,s,i)=>e(i))})}runScript(t,e){return new Promise(s=>{let i=this.getdata("@chavy_boxjs_userCfgs.httpapi");i=i?i.replace(/\n/g,"").trim():i;let r=this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");r=r?1*r:20,r=e&&e.timeout?e.timeout:r;const[o,h]=i.split("@"),a={url:`http://${h}/v1/scripting/evaluate`,body:{script_text:t,mock_type:"cron",timeout:r},headers:{"X-Key":o,Accept:"*/*"}};this.post(a,(t,e,i)=>s(i))}).catch(t=>this.logErr(t))}loaddata(){if(!this.isNode())return{};{this.fs=this.fs?this.fs:require("fs"),this.path=this.path?this.path:require("path");const t=this.path.resolve(this.dataFile),e=this.path.resolve(process.cwd(),this.dataFile),s=this.fs.existsSync(t),i=!s&&this.fs.existsSync(e);if(!s&&!i)return{};{const i=s?t:e;try{return JSON.parse(this.fs.readFileSync(i))}catch(t){return{}}}}}writedata(){if(this.isNode()){this.fs=this.fs?this.fs:require("fs"),this.path=this.path?this.path:require("path");const t=this.path.resolve(this.dataFile),e=this.path.resolve(process.cwd(),this.dataFile),s=this.fs.existsSync(t),i=!s&&this.fs.existsSync(e),r=JSON.stringify(this.data);s?this.fs.writeFileSync(t,r):i?this.fs.writeFileSync(e,r):this.fs.writeFileSync(t,r)}}lodash_get(t,e,s){const i=e.replace(/\[(\d+)\]/g,".$1").split(".");let r=t;for(const t of i)if(r=Object(r)[t],void 0===r)return s;return r}lodash_set(t,e,s){return Object(t)!==t?t:(Array.isArray(e)||(e=e.toString().match(/[^.[\]]+/g)||[]),e.slice(0,-1).reduce((t,s,i)=>Object(t[s])===t[s]?t[s]:t[s]=Math.abs(e[i+1])>>0==+e[i+1]?[]:{},t)[e[e.length-1]]=s,t)}getdata(t){let e=this.getval(t);if(/^@/.test(t)){const[,s,i]=/^@(.*?)\.(.*?)$/.exec(t),r=s?this.getval(s):"";if(r)try{const t=JSON.parse(r);e=t?this.lodash_get(t,i,""):e}catch(t){e=""}}return e}setdata(t,e){let s=!1;if(/^@/.test(e)){const[,i,r]=/^@(.*?)\.(.*?)$/.exec(e),o=this.getval(i),h=i?"null"===o?null:o||"{}":"{}";try{const e=JSON.parse(h);this.lodash_set(e,r,t),s=this.setval(JSON.stringify(e),i)}catch(e){const o={};this.lodash_set(o,r,t),s=this.setval(JSON.stringify(o),i)}}else s=this.setval(t,e);return s}getval(t){return this.isSurge()||this.isLoon()?$persistentStore.read(t):this.isQuanX()?$prefs.valueForKey(t):this.isNode()?(this.data=this.loaddata(),this.data[t]):this.data&&this.data[t]||null}setval(t,e){return this.isSurge()||this.isLoon()?$persistentStore.write(t,e):this.isQuanX()?$prefs.setValueForKey(t,e):this.isNode()?(this.data=this.loaddata(),this.data[e]=t,this.writedata(),!0):this.data&&this.data[e]||null}initGotEnv(t){this.got=this.got?this.got:require("got"),this.cktough=this.cktough?this.cktough:require("tough-cookie"),this.ckjar=this.ckjar?this.ckjar:new this.cktough.CookieJar,t&&(t.headers=t.headers?t.headers:{},void 0===t.headers.Cookie&&void 0===t.cookieJar&&(t.cookieJar=this.ckjar))}get(t,e=(()=>{})){t.headers&&(delete t.headers["Content-Type"],delete t.headers["Content-Length"]),this.isSurge()||this.isLoon()?(this.isSurge()&&this.isNeedRewrite&&(t.headers=t.headers||{},Object.assign(t.headers,{"X-Surge-Skip-Scripting":!1})),$httpClient.get(t,(t,s,i)=>{!t&&s&&(s.body=i,s.statusCode=s.status),e(t,s,i)})):this.isQuanX()?(this.isNeedRewrite&&(t.opts=t.opts||{},Object.assign(t.opts,{hints:!1})),$task.fetch(t).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>e(t))):this.isNode()&&(this.initGotEnv(t),this.got(t).on("redirect",(t,e)=>{try{if(t.headers["set-cookie"]){const s=t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();this.ckjar.setCookieSync(s,null),e.cookieJar=this.ckjar}}catch(t){this.logErr(t)}}).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>{const{message:s,response:i}=t;e(s,i,i&&i.body)}))}post(t,e=(()=>{})){if(t.body&&t.headers&&!t.headers["Content-Type"]&&(t.headers["Content-Type"]="application/x-www-form-urlencoded"),t.headers&&delete t.headers["Content-Length"],this.isSurge()||this.isLoon())this.isSurge()&&this.isNeedRewrite&&(t.headers=t.headers||{},Object.assign(t.headers,{"X-Surge-Skip-Scripting":!1})),$httpClient.post(t,(t,s,i)=>{!t&&s&&(s.body=i,s.statusCode=s.status),e(t,s,i)});else if(this.isQuanX())t.method="POST",this.isNeedRewrite&&(t.opts=t.opts||{},Object.assign(t.opts,{hints:!1})),$task.fetch(t).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>e(t));else if(this.isNode()){this.initGotEnv(t);const{url:s,...i}=t;this.got.post(s,i).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>{const{message:s,response:i}=t;e(s,i,i&&i.body)})}}time(t){let e={"M+":(new Date).getMonth()+1,"d+":(new Date).getDate(),"H+":(new Date).getHours(),"m+":(new Date).getMinutes(),"s+":(new Date).getSeconds(),"q+":Math.floor(((new Date).getMonth()+3)/3),S:(new Date).getMilliseconds()};/(y+)/.test(t)&&(t=t.replace(RegExp.$1,((new Date).getFullYear()+"").substr(4-RegExp.$1.length)));for(let s in e)new RegExp("("+s+")").test(t)&&(t=t.replace(RegExp.$1,1==RegExp.$1.length?e[s]:("00"+e[s]).substr((""+e[s]).length)));return t}msg(e=t,s="",i="",r){const o=t=>{if(!t)return t;if("string"==typeof t)return this.isLoon()?t:this.isQuanX()?{"open-url":t}:this.isSurge()?{url:t}:void 0;if("object"==typeof t){if(this.isLoon()){let e=t.openUrl||t.url||t["open-url"],s=t.mediaUrl||t["media-url"];return{openUrl:e,mediaUrl:s}}if(this.isQuanX()){let e=t["open-url"]||t.url||t.openUrl,s=t["media-url"]||t.mediaUrl;return{"open-url":e,"media-url":s}}if(this.isSurge()){let e=t.url||t.openUrl||t["open-url"];return{url:e}}}};this.isMute||(this.isSurge()||this.isLoon()?$notification.post(e,s,i,o(r)):this.isQuanX()&&$notify(e,s,i,o(r)));let h=["","==============\ud83d\udce3\u7cfb\u7edf\u901a\u77e5\ud83d\udce3=============="];h.push(e),s&&h.push(s),i&&h.push(i),console.log(h.join("\n")),this.logs=this.logs.concat(h)}log(...t){t.length>0&&(this.logs=[...this.logs,...t]),console.log(t.join(this.logSeparator))}logErr(t,e){const s=!this.isSurge()&&!this.isQuanX()&&!this.isLoon();s?this.log("",`\u2757\ufe0f${this.name}, \u9519\u8bef!`,t.stack):this.log("",`\u2757\ufe0f${this.name}, \u9519\u8bef!`,t)}wait(t){return new Promise(e=>setTimeout(e,t))}done(t={}){const e=(new Date).getTime(),s=(e-this.startTime)/1e3;this.log("",`\ud83d\udd14${this.name}, \u7ed3\u675f! \ud83d\udd5b ${s} \u79d2`),this.log(),(this.isSurge()||this.isQuanX()||this.isLoon())&&$done(t)}}(t,e)}
