@@ -30,7 +30,7 @@ hostname = bububao.duoshoutuan.com,
 
 const $ = new Env('步步寶')
 let notice = ''
-let CookieVal = $.getdata('bbb_ck')
+let CookieVal = $.getdata('BBB_CK')
 
 if ($.isNode()) {
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
@@ -44,7 +44,7 @@ now = new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8
 if (typeof $request !== 'undefined') {
    if ($request && $request.method != `OPTIONS` && $request.url.indexOf('user/profile') != -1) {
      const CookieVal = JSON.stringify($request.headers)
-if(CookieVal)$.setdata(CookieVal,'bbb_ck')
+if(CookieVal)$.setdata(CookieVal,'BBB_CK')
      $.log(`CookieVal:${CookieVal}`)
      $.msg($.name,"获取Cookie成功")
      $.done()
