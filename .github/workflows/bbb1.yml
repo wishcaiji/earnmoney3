@@ -49,7 +49,6 @@ if(CookieVal)$.setdata(CookieVal,'bbb_ck')
      $.msg($.name,"获取Cookie成功")
      $.done()
    }
-/*
 } else {
 !(async () => {
 
