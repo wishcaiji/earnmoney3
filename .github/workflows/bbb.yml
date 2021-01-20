@@ -39,4 +39,4 @@ jobs:
         run: |
           node BBB.js
         env:
-          TZ: Asia/shanghai
+          BBB_CK: ${{ secrets.BBB_CK }}
