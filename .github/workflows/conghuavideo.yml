@@ -1,10 +1,10 @@
-name: 葱花自动刷视频
+name: 葱花刷视频
 
 on:
   workflow_dispatch:
   # 账号越多文章越多，运行一次消耗的时间也越长，文章和视频不要一块运行，cron自己看着写
   schedule:
-     - cron: '0 */2 * * *'
+     - cron: '10 22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 * * *'
   watch:
     types: started
 jobs:
