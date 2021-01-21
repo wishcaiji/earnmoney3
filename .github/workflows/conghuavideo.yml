@@ -25,6 +25,6 @@ jobs:
       - name: '运行 【葱花视频-自动刷视频】'
         if: env.RONGHUA_VIDEO
         run: |
-          node Task/RONGHUA_VIDEO.js
+          node RONGHUA_VIDEO.js
         env:
           RONGHUA_READ: ${{ secrets.RONGHUA_VIDEO }}
