@@ -97,7 +97,7 @@ const wxtaskkeyArr = [];
 //let wxtaskkeyVal = "";
 let WXTASKKEY = [];
 
-et wxtaskkeyVal = process.env.WXTASKKEY
+let wxtaskkeyVal = process.env.WXTASKKEY
  
 ////////////////////////////////////////////////////////////////////
 
