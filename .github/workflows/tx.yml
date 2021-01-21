@@ -24,4 +24,10 @@ jobs:
               run: |
                   node txstockqx.js
               env:
-                  BBBCK: ${{ secrets.BBBCK }}
+                  USERHEADER: ${{ secrets.USERHEADER }}
+                  USERKEY: ${{ secrets.USERKEY }}
+                  SINGHEADER: ${{ secrets.SINGHEADER }}
+                  SINGKEY: ${{ secrets.SINGKEY }}
+                  TASKHEADER: ${{ secrets.TASKHEADER }}
+                  TASKKEY: ${{ secrets.TASKKEY }}
+                  WXTASKKEY: ${{ secrets.WXTASKKEY }}
