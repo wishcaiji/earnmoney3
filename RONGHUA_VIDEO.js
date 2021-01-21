@@ -76,9 +76,9 @@ function AutoRead() {
         console.log(`第${$.index}次-获取金币已达上限🥺,明日在来！`)
       }
       else if (typeof readres.data.score === 'number') {
-      console.log(`\n本次阅读获得${readres.data.score}个金币🏅，请等待30s后执行下一次阅读\n`);
+      console.log(`\n本次阅读获得${readres.data.score}个金币🏅，请等待50s后执行下一次阅读\n`);
       readscore += readres.data.score;
-      await $.wait(20000);
+      await $.wait(50000);
       }
 
       resolve()
