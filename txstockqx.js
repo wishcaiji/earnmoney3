@@ -59,43 +59,43 @@ let cash = $.getval('cash') || 0; //0为不自动提现,1为自动提现1元,5�
 
 const userheaderArr = [];
 //let userheaderVal = "";
-let USERHEADER = [];
+//let USERHEADER = [];
 
 let userheaderVal = process.env.USERHEADER
 
 const userkeyArr = [];
 //let userkeyVal = "";
-let USERKEY = [];
+//let USERKEY = [];
 
 let userkeyVal = process.env.USERKEY
 
 const signheaderArr = [];
 //let signheaderVal = "";
-let SINGHEADER = [];
+//let SINGHEADER = [];
 
 let signheaderVal = process.env.SINGHEADER
 
 const signkeyArr = [];
 //let signkeyVal = "";
-let SINGKEY = [];
+//let SINGKEY = [];
 
 let signkeyVal = process.env.SINGKEY
 
 const taskheaderArr = [];
 //let taskheaderVal = "";
-let TASKHEADER = [];
+//let TASKHEADER = [];
 
 let taskheaderVal = process.env.TASKHEADER
 
 const taskkeyArr = [];
 //let taskkeyVal = "";
-let TASKKEY = [];
+//let TASKKEY = [];
 
 let taskkeyVal = process.env.TASKKEY
 
 const wxtaskkeyArr = [];
 //let wxtaskkeyVal = "";
-let WXTASKKEY = [];
+//let WXTASKKEY = [];
 
 let wxtaskkeyVal = process.env.WXTASKKEY
  
