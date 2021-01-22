@@ -26,4 +26,4 @@ jobs:
       - name: '运行 【惠头条】'
         run: |
           cd ~/zaqi  
-          node Task/huitoutiao.js
+          node huitoutiao.js
