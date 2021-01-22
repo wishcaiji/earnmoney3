@@ -68,7 +68,7 @@ function GetCookie() {
     "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
     "Accept-Language": "zh-Hans;q=1"
 };
-  const body="{\"versionName\":\"4.3.0\",\"platform\":1,\"count\":1,\"userId\":151069331,\"multiple\":false,\"channel\":\"dongfang\",\"duration\":30,\"appVersion\":1039,\"loginId\":\"2e4062f0d4124c5a88bda1991a4b263f\",\"readActionInfo\":{\"maxHistorySize\":0,\"toolTypes\":[0],\"moveAvgPressure\":0,\"downCount\":12,\"monkey\":false,\"moveCount\":687,\"downAvgPressure\":0}}";
+  const body="{\"versionName\":\"4.3.0\",\"platform\":1,\"count\":1,\"userId\":150517171,\"multiple\":false,\"channel\":\"dongfang\",\"duration\":30,\"appVersion\":1039,\"loginId\":\"2e4062f0d4124c5a88bda1991a4b263f\",\"readActionInfo\":{\"maxHistorySize\":0,\"toolTypes\":[0],\"moveAvgPressure\":0,\"downCount\":12,\"monkey\":false,\"moveCount\":687,\"downAvgPressure\":0}}";
   const request = {
       url: url,
       headers: headers,
@@ -111,7 +111,7 @@ function GetCookie() {
  function runwatch1() {
   return new Promise((resolve, reject) => {
   const url = "https://api.cashtoutiao.com/frontend/read/sych/duration?userId=150517171&loginId=973fef25abb04343be9cb327e1d40a24&appVersion=1039&platform=1&versionName=4.3.0";
-  const body = "{\"versionName\":\"4.3.0\",\"platform\":1,\"count\":0,\"userId\":151069331,\"multiple\":false,\"channel\":\"video\",\"duration\":30,\"appVersion\":1039,\"loginId\":\"2e4062f0d4124c5a88bda1991a4b263f\"}";
+  const body = "{\"versionName\":\"4.3.0\",\"platform\":1,\"count\":0,\"userId\":150517171,\"multiple\":false,\"channel\":\"video\",\"duration\":30,\"appVersion\":1039,\"loginId\":\"2e4062f0d4124c5a88bda1991a4b263f\"}";
   const headers = {
     "Accept-Encoding": "gzip, deflate, br",
     "Accept": "*/*",
