@@ -19,11 +19,11 @@ jobs:
           node-version: 14.x
       - name: npm install
         run: |
-          cd ~/js
+          cd ~/zaqi
           npm install
           npm install cron
           npm install request
       - name: '运行 【惠头条】'
         run: |
-          cd ~/js   
+          cd ~/zaqi  
           node Task/huitoutiao.js
