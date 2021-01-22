@@ -21,8 +21,6 @@ jobs:
         run: |
           cd ~/zaqi
           npm install
-          npm install cron
-          npm install request
       - name: '运行 【惠头条】'
         run: |
           cd ~/zaqi  
