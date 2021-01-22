@@ -57,7 +57,7 @@ function GetCookie() {
   
  function runyouthread1() {
   return new Promise((resolve, reject) => {
-  const url = "https://api.cashtoutiao.com/frontend/read/sych/duration?userId=151069331&loginId=2e4062f0d4124c5a88bda1991a4b263f&appVersion=1039&platform=1&versionName=4.3.0";
+  const url = "";
 
   const headers = {
     "Accept-Encoding": "gzip, deflate, br",
@@ -110,7 +110,7 @@ function GetCookie() {
   
  function runwatch1() {
   return new Promise((resolve, reject) => {
-  const url = "https://api.cashtoutiao.com/frontend/read/sych/duration?userId=151069331&loginId=2e4062f0d4124c5a88bda1991a4b263f&appVersion=1039&platform=1&versionName=4.3.0";
+  const url = "";
   const body = "{\"versionName\":\"4.3.0\",\"platform\":1,\"count\":0,\"userId\":151069331,\"multiple\":false,\"channel\":\"video\",\"duration\":30,\"appVersion\":1039,\"loginId\":\"2e4062f0d4124c5a88bda1991a4b263f\"}";
   const headers = {
     "Accept-Encoding": "gzip, deflate, br",
