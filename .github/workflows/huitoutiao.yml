@@ -22,5 +22,4 @@ jobs:
           npm install
       - name: '运行 【惠头条】'
         run: |
-          cd ~/zaqi  
           node huitoutiao.js
