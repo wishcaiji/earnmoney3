@@ -61,43 +61,43 @@ const userheaderArr = [];
 //let userheaderVal = "";
 //let USERHEADER = [];
 
-let userheaderVal = process.env.USERHEADER
+const userheaderVal = process.env.USERHEADER
 
 const userkeyArr = [];
 //let userkeyVal = "";
 //let USERKEY = [];
 
-let userkeyVal = process.env.USERKEY
+const userkeyVal = process.env.USERKEY
 
 const signheaderArr = [];
 //let signheaderVal = "";
 //let SINGHEADER = [];
 
-let signheaderVal = process.env.SINGHEADER
+const signheaderVal = process.env.SINGHEADER
 
 const signkeyArr = [];
 //let signkeyVal = "";
 //let SINGKEY = [];
 
-let signkeyVal = process.env.SINGKEY
+const signkeyVal = process.env.SINGKEY
 
 const taskheaderArr = [];
 //let taskheaderVal = "";
 //let TASKHEADER = [];
 
-let taskheaderVal = process.env.TASKHEADER
+const taskheaderVal = process.env.TASKHEADER
 
 const taskkeyArr = [];
 //let taskkeyVal = "";
 //let TASKKEY = [];
 
-let taskkeyVal = process.env.TASKKEY
+const taskkeyVal = process.env.TASKKEY
 
 const wxtaskkeyArr = [];
 //let wxtaskkeyVal = "";
 //let WXTASKKEY = [];
 
-let wxtaskkeyVal = process.env.WXTASKKEY
+const wxtaskkeyVal = process.env.WXTASKKEY
  
 ////////////////////////////////////////////////////////////////////
 
