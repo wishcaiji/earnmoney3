@@ -19,7 +19,6 @@ jobs:
           node-version: 14.x
       - name: npm install
         run: |
-          cd ~/zaqi
           npm install
       - name: '运行 【惠头条】'
         run: |
