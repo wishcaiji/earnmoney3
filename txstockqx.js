@@ -105,7 +105,7 @@ const WXTASKKEY = process.env.WXTASKKEY
 if ($.isNode()) {
   Object.keys(userheaderVal).forEach((item) => {
     if (userheaderVal[item]) {
-      userheaderArr.push(signheaderVal[item])
+      userheaderArr.push(userheaderVal[item])
     }
   });
   Object.keys(userkeyVal).forEach((item) => {
