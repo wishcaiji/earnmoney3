@@ -29,7 +29,7 @@ jobs:
           npm install got #tough-cookie
       - name: ' 运行 【快手极速版签到】'
         run: |
-          node kuaishou1.js
+          node kuaishou.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
