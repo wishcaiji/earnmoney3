@@ -19,7 +19,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
-        if: env.BAIDU_COOKIE2
+        if: env.BAIDU_COOKIE
         run: |
           git clone https://github.com/mantou5050/zaqi.git ~/zaqi
       - name: Use Node.js ${{ matrix.node-version }}
@@ -36,13 +36,13 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
       - name: npm install
-        if: env.BAIDU_COOKIE2
+        if: env.BAIDU_COOKIE
         run: |
           cd ~/zaqi
           git checkout master
           npm install
       - name: '运行 【百度极速版】'
-        if: env.BAIDU_COOKIE2
+        if: env.BAIDU_COOKIE
         run: |
           cd ~/zaqi
           node baidu_speed2.js
