@@ -22,7 +22,7 @@ jobs:
                   npm install
             - name: "运行【百度极速版】"
               run: |
-                  node baidu_speed2.js
+                  node baidu_speed.js
               env:
                   BAIDU_COOKIE: ${{ secrets.BAIDU_COOKIE2 }}
                   PUSH_KEY: ${{ secrets.PUSH_KEY }}
