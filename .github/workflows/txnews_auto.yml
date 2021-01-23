@@ -31,7 +31,7 @@ jobs:
       - name: '运行 【腾讯新闻自动阅读账号一】'
         if: env.TX_CK
         run: |
-          node Task/txnews_task.js
+          node txnews_task.js
         env:
           TX_CK: ${{ secrets.TX_CK }}
           TX_READ: ${{ secrets.TX_READ }}
