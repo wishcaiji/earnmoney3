@@ -1,4 +1,4 @@
-name: 步步宝
+name: 步步宝2
 
 on:
     workflow_dispatch:
@@ -24,5 +24,5 @@ jobs:
               run: |
                   node BBB.js
               env:
-                  BBBCK: ${{ secrets.BBBCK }}
+                  BBBCK: ${{ secrets.BBBCK2 }}
                   PUSH_KEY: ${{ secrets.PUSH_KEY }}
