@@ -25,3 +25,4 @@ jobs:
                   node BBB.js
               env:
                   BBBCK: ${{ secrets.BBBCK }}
+                  PUSH_KEY: ${{ secrets.PUSH_KEY }}
