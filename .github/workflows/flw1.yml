@@ -30,12 +30,12 @@ jobs:
       - name: npm install
         
         run: |
-          cd ~/zaqi
+          
           npm install
       - name: '运行 【返利网】'
         
         run: |
-          cd ~/zaqi
+          
           node flw.js
         env:
           
