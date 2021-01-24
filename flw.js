@@ -89,20 +89,20 @@ const flwurlArr = [];
 const flwheaderArr = [];
 const flwspbodyArr = [];
 const flwqwbodyArr = [];
-//let flwurlVal = ``;
-//let flwheaderVal = ``;
-//let flwspbodyVal = ``;
-//let flwqwbodyVal = ``;
+let flwurlVal = ``;
+let flwheaderVal = ``;
+let flwspbodyVal = ``;
+let flwqwbodyVal = ``;
 let middleflwURL = [];
 let middleflwHEADER = [];
 let middleflwspBODY = [];
 let middleflwqwBODY = [];
 
 
-let flwurlVal = process.env.FL_FLWURL
-let flwheaderVal = process.env.FL_FLWHEADER
-let flwspbodyVal = process.env.FL_FLWSPBODY
-let flwqwbodyVal = process.env.FL_FLWQWBODY
+//let flwurlVal = process.env.FL_FLWURL
+//let flwheaderVal = process.env.FL_FLWHEADER
+//let flwspbodyVal = process.env.FL_FLWSPBODY
+//let flwqwbodyVal = process.env.FL_FLWQWBODY
 
 
 //时间
