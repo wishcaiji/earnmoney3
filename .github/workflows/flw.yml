@@ -23,10 +23,10 @@ jobs:
             - name: "运行【返利网】"
               run: |
                   node flw.js
-                  node flwCOOKIE.js
+                  
               env:
-                  #FL_FLWURL: ${{ secrets.FL_FLWURL }}
-                  #FL_FLWHEADER: ${{ secrets.FL_FLWHEADER }}
-                  #FL_FLWSPBODY: ${{ secrets.FL_FLWSPBODY }}
-                  #FL_FLWQWBODY: ${{ secrets.FL_FLWQWBODY }}
+                  FL_FLWURL: ${{ secrets.FL_FLWURL }}
+                  FL_FLWHEADER: ${{ secrets.FL_FLWHEADER }}
+                  FL_FLWSPBODY: ${{ secrets.FL_FLWSPBODY }}
+                  FL_FLWQWBODY: ${{ secrets.FL_FLWQWBODY }}
                   PUSH_KEY: ${{ secrets.PUSH_KEY }}
