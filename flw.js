@@ -88,20 +88,20 @@ const flwurlArr = [];
 const flwheaderArr = [];
 const flwspbodyArr = [];
 const flwqwbodyArr = [];
-//let flwurlVal = ``;
-//let flwheaderVal = ``;
-//let flwspbodyVal = ``;
-//let flwqwbodyVal = ``;
+let flwurlVal = ``;
+let flwheaderVal = ``;
+let flwspbodyVal = ``;
+let flwqwbodyVal = ``;
 let middleflwURL = [];
 let middleflwHEADER = [];
 let middleflwspBODY = [];
 let middleflwqwBODY = [];
 
 
-let flwurlVal = process.env.FL_flwURL
-let flwheaderVal = process.env.FL_flwHEADER
-let flwspbodyVal = process.env.FL_flwspBODY
-let flwqwbodyVal = process.env.FL_flwqwBODY
+//let flwurlVal = process.env.FL_flwURL
+//let flwheaderVal = process.env.FL_flwHEADER
+//let flwspbodyVal = process.env.FL_flwspBODY
+//let flwqwbodyVal = process.env.FL_flwqwBODY
 
 
 
