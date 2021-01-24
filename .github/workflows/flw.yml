@@ -29,4 +29,5 @@ jobs:
                   FL_FLWHEADER: ${{ secrets.FL_FLWHEADER }}
                   FL_FLWSPBODY: ${{ secrets.FL_FLWSPBODY }}
                   FL_FLWQWBODY: ${{ secrets.FL_FLWQWBODY }}
+                  FL_CASH: ${{ secrets.FL_CASH }}
                   PUSH_KEY: ${{ secrets.PUSH_KEY }}
