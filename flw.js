@@ -73,7 +73,7 @@ http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fan
 const $ = Env("返利网");
 $.idx = ($.idx = ($.getval('flwSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
-const COOKIE = $.isNode() ? require("./flwCOOKIE") : ``;
+//const COOKIE = $.isNode() ? require("./flwCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1// 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 1;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
@@ -93,10 +93,10 @@ const flwqwbodyArr = [];
 //let flwheaderVal = ``;
 //let flwspbodyVal = ``;
 //let flwqwbodyVal = ``;
-//let middleflwURL = [];
-//let middleflwHEADER = [];
-//let middleflwspBODY = [];
-//let middleflwqwBODY = [];
+let middleflwURL = [];
+let middleflwHEADER = [];
+let middleflwspBODY = [];
+let middleflwqwBODY = [];
 
 
 let flwurlVal = process.env.COOKIE_FLWURL
