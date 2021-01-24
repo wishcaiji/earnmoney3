@@ -27,5 +27,5 @@ jobs:
                   COOKIE_FLWURL: ${{ secrets.COOKIE_FLWURL }}
                   COOKIE_FLWHEADER: ${{ secrets.COOKIE_FLWHEADER }}
                   COOKIE_FLWSPBODY: ${{ secrets.COOKIE_FLWSPBODY }}
-                  COOKIE.FLWQWBODY: ${{ secrets.COOKIE.FLWQWBODY }}
+                  COOKIE.FLWQWBODY: ${{ secrets.COOKIE_FLWQWBODY }}
                   PUSH_KEY: ${{ secrets.PUSH_KEY }}
