@@ -24,8 +24,8 @@ jobs:
               run: |
                   node flw.js
               env:
-                  FL_flwURL: ${{ secrets.FL_flwURL }}
-                  FL_flwHEADER: ${{ secrets.FL_flwHEADER }}
-                  FL_flwspBODY: ${{ secrets.FL_flwspBODY }}
-                  FL_flwqwBODY: ${{ secrets.FL_flwqwBODY }}
+                  FL_FLWURL: ${{ secrets.FL_FLWURL }}
+                  FL_FLWHEADER: ${{ secrets.FL_FLWHEADER }}
+                  FL_FLWSPBODY: ${{ secrets.FL_FLWSPBODY }}
+                  FL_FLWQWBODY: ${{ secrets.FL_FLWQWBODY }}
                   PUSH_KEY: ${{ secrets.PUSH_KEY }}
