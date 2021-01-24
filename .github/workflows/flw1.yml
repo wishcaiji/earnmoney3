@@ -35,8 +35,8 @@ jobs:
       - name: '运行 【返利网】'
         if: env.FL_flwURL
         run: |
-          cd ~/JavaScript
-          node Task/flw.js
+          cd ~/zaqi
+          node flw.js
         env:
           
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
