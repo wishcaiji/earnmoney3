@@ -30,12 +30,9 @@ jobs:
       - name: npm install
         
         run: |
-          
           npm install
       - name: '运行 【返利网】'
-        
         run: |
-          
           node flw.js
         env:
           
