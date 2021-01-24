@@ -102,7 +102,7 @@ let middleflwqwBODY = [];
 let flwurlVal = process.env.COOKIE_FLWURL
 let flwheaderVal = process.env.COOKIE_FLWHEADER
 let flwspbodyVal = process.env.COOKIE_FLWSPBODY
-let flwqwbodyVal = process.env.COOKIE.FLWQWBODY	
+let flwqwbodyVal = process.env.COOKIE_FLWQWBODY	
 
 
 //时间
