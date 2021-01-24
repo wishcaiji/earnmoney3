@@ -24,8 +24,8 @@ jobs:
               run: |
                   node flw.js
               env:
-                  FL_FLWURL: ${{ secrets.FL_FLWURL }}
-                  FL_FLWHEADER: ${{ secrets.FL_FLWHEADER }}
-                  FL_FLWSPBODY: ${{ secrets.FL_FLWSPBODY }}
-                  FL_FLWQWBODY: ${{ secrets.FL_FLWQWBODY }}
+                  COOKIE_FLWURL: ${{ secrets.COOKIE_FLWURL }}
+                  COOKIE_FLWHEADER: ${{ secrets.COOKIE_FLWHEADER }}
+                  COOKIE_FLWSPBODY: ${{ secrets.COOKIE_FLWSPBODY }}
+                  COOKIE.FLWQWBODY: ${{ secrets.COOKIE.FLWQWBODY }}
                   PUSH_KEY: ${{ secrets.PUSH_KEY }}
