@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/ziye12/JavaScript.git ~/JavaScript
+          git clone https://github.com/mantou5050/zaqi.git ~/zaqi
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -30,13 +30,13 @@ jobs:
       - name: npm install
         if: env.FL_flwURL
         run: |
-          cd ~/JavaScript
+          cd ~/zaqi
           npm install
       - name: '运行 【返利网】'
         if: env.FL_flwURL
         run: |
-          cd ~/JavaScript
-          node Task/flw.js
+          cd ~/zaqi
+          node flw.js
         env:
           
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
