@@ -12,7 +12,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.23 增加签到任务等
 1.24 修复错误
 1.24 优化显示
-1.24 修复判定错误，调整视频延迟
+1.24 修复判定错误，调整视频延迟，修复node环境错误
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -35,7 +35,7 @@ flwurlVal 👉FL_flwspBODY
 flwurlVal 👉FL_flwqwBODY
 
 
-设置提现变量 可设置 0.3以上 务必关注官方公众号，并且手动领取天天领现金
+设置提现变量 可设置 0.3以上 务必关注官方公众号，并且手动领取红包
 CASH  👉  FL_CASH
 
 ⚠️主机名以及重写👇
@@ -73,13 +73,13 @@ http-request https:\/\/(huodong\.fanli\.com\/*||passport\.fanli\.com\/*||gw\.fan
 const $ = Env("返利网");
 $.idx = ($.idx = ($.getval('flwSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
-//const COOKIE = $.isNode() ? require("./flwCOOKIE") : ``;
+const COOKIE = $.isNode() ? require("./flwCOOKIE") : ``;
 const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1// 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 1;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 
 
-//$.message = '', COOKIES_SPLIT = '', CASH = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '';
 
 let ksp,zp;
 let dd=0 ;
@@ -89,22 +89,14 @@ const flwurlArr = [];
 const flwheaderArr = [];
 const flwspbodyArr = [];
 const flwqwbodyArr = [];
-//let flwurlVal = ``;
-//let flwheaderVal = ``;
-//let flwspbodyVal = ``;
-//let flwqwbodyVal = ``;
+let flwurlVal = ``;
+let flwheaderVal = ``;
+let flwspbodyVal = ``;
+let flwqwbodyVal = ``;
 let middleflwURL = [];
 let middleflwHEADER = [];
 let middleflwspBODY = [];
 let middleflwqwBODY = [];
-
-
-let flwurlVal = process.env.FL_FLWURL
-let flwheaderVal = process.env.FL_FLWHEADER
-let flwspbodyVal = process.env.FL_FLWSPBODY
-let flwqwbodyVal = process.env.FL_FLWQWBODY
-
-
 //时间
 const nowTimes = new Date(
   new Date().getTime() +
@@ -155,16 +147,16 @@ if ($.isNode() && process.env.FL_flwURL) {
     middleflwqwBODY = process.env.FL_flwqwBODY.split();
   } 
 }
-if (COOKIE.flwURL) {
+if (COOKIE.flwurlVal) {
   FL_COOKIES = {
-"flwURL": COOKIE.flwURL.split('\n'),
-"flwHEADER": COOKIE.flwHEADER.split('\n'),
-"flwspBODY": COOKIE.flwspBODY.split('\n'),
-"flwqwBODY": COOKIE.flwqwBODY.split('\n'),
+"flwurlVal": COOKIE.flwurlVal.split('\n'),
+"flwheaderVal": COOKIE.flwheaderVal.split('\n'),
+"flwspbodyVal": COOKIE.flwspbodyVal.split('\n'),
+"flwqwbodyVal": COOKIE.flwqwbodyVal.split('\n'),
   } 
-  Length = FL_COOKIES.flwURL.length;
+  Length = FL_COOKIES.flwurlVal.length;
 }
-if (!COOKIE.flwURL) {
+if (!COOKIE.flwurlVal) {
 if ($.isNode()) {
   Object.keys(middleflwURL).forEach((item) => {
     if (middleflwURL[item]) {
@@ -316,7 +308,7 @@ let cookie_is_live = await flwdl(i + 1);//登录
     if (!cookie_is_live) {
      continue;
     }       
-	  await flwhbcoin();//天天领现金账户        
+	  //await flwhbcoin();//天天领现金账户        
 	  //await flwhb();//天天领现金
       await flwtask();//任务列表
 if($.flwtask.data&&qw.status==0){
@@ -649,7 +641,7 @@ tts = Math.round(new Date().getTime() +
           resolve()
         }
       })
-	  }, i * 1000);
+	  }, i * 2000);
       }	  
     },timeout)
   })
