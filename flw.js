@@ -93,10 +93,10 @@ const flwqwbodyArr = [];
 //let flwheaderVal = ``;
 //let flwspbodyVal = ``;
 //let flwqwbodyVal = ``;
-let middleflwURL = [];
-let middleflwHEADER = [];
-let middleflwspBODY = [];
-let middleflwqwBODY = [];
+//let middleflwURL = [];
+//let middleflwHEADER = [];
+//let middleflwspBODY = [];
+//let middleflwqwBODY = [];
 
 
 let flwurlVal = process.env.COOKIE_FLWURL
