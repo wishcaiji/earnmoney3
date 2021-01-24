@@ -99,10 +99,10 @@ let middleflwspBODY = [];
 let middleflwqwBODY = [];
 
 
-let flwurlVal = process.env.COOKIE_FLWURL
-let flwheaderVal = process.env.COOKIE_FLWHEADER
-let flwspbodyVal = process.env.COOKIE_FLWSPBODY
-let flwqwbodyVal = process.env.COOKIE_FLWQWBODY	
+let flwurlVal = process.env.FL_FLWURL
+let flwheaderVal = process.env.FL_FLWHEADER
+let flwspbodyVal = process.env.FL_FLWSPBODY
+let flwqwbodyVal = process.env.FL_FLWQWBODY
 
 
 //时间
