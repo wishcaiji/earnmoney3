@@ -14,11 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        FL_flwURL: ${{ secrets.FL_flwURL }}
-        FL_flwHEADER: ${{ secrets.FL_flwHEADER }}		
-        FL_flwspBODY: ${{ secrets.FL_flwspBODY }}	
-        FL_flwqwBODY: ${{ secrets.FL_flwqwBODY }}        
-        FL_CASH: ${{ secrets.FL_CASH }}
+        
     steps:
       - name: Checkout
         run: |
@@ -30,15 +26,19 @@ jobs:
       - name: npm install
         if: env.FL_flwURL
         run: |
-          cd ~/JavaScript
+          cd ~/zaqi
           npm install
       - name: '运行 【返利网】'
         if: env.FL_flwURL
         run: |
-          cd ~/JavaScript
+          cd ~/zaqi
           node flw.js
         env:
-          
+          FL_flwURL: ${{ secrets.FL_flwURL }}
+          FL_flwHEADER: ${{ secrets.FL_flwHEADER }}		
+          FL_flwspBODY: ${{ secrets.FL_flwspBODY }}	
+          FL_flwqwBODY: ${{ secrets.FL_flwqwBODY }}        
+          FL_CASH: ${{ secrets.FL_CASH }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
