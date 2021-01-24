@@ -52,20 +52,7 @@ let RdArr = [], VdArr = [];
     console.log($.name, '【提示】请把腾讯Ck和任务链接填入Github 的 Secrets 中，请以#或者换行隔开')
     return;
   }
-     if(RdArr){
-     console.log("共"+RdArr.length+"次阅读任务")
-  for (let i = 0; i < RdArr.length; i++) {
-      TaskUrl = RdArr[i];
-      body = "event=article_read"
-      $.index = i + 1;
-   console.log(`-------------------------\n\n开始腾讯新闻第${$.index}次阅读`)
-      await AutoRead();
-      console.log(`请等待5s后继续阅读第${$.index+1}次任务`)
-      await $.wait(5000);
-    }
-   console.log(`-------------------------\n\n腾讯新闻共完成阅读任务(${$.index})次，阅读金币详情见App，阅读任务全部结束`)
-  }
-   if(VdArr){
+     if(VdArr){
    console.log("共"+VdArr.length+"次视频任务")
     for (var j = 0; j < VdArr.length; j++) {
     
@@ -76,6 +63,19 @@ let RdArr = [], VdArr = [];
       await AutoRead();
       console.log(`请等待10s后继续视频第${$.vdindex+1}次任务`)
       await $.wait(10000);
+    }
+   console.log(`-------------------------\n\n腾讯新闻共完成阅读任务(${$.index})次，阅读金币详情见App，阅读任务全部结束`)
+  }
+   if(RdArr){
+     console.log("共"+RdArr.length+"次阅读任务")
+  for (let i = 0; i < RdArr.length; i++) {
+      TaskUrl = RdArr[i];
+      body = "event=article_read"
+      $.index = i + 1;
+   console.log(`-------------------------\n\n开始腾讯新闻第${$.index}次阅读`)
+      await AutoRead();
+      console.log(`请等待5s后继续阅读第${$.index+1}次任务`)
+      await $.wait(5000);
       }
     console.log(`-------------------------\n\n共完成视频任务(${$.vdindex})次，视频金币详情见App，视频任务全部结束`)
 }
