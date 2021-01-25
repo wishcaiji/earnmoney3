@@ -14,7 +14,7 @@
 
 [@Sunert](https://github.com/Sunert/Scripts) - 中青看点极速版，米读自动阅读，电视家，腾讯新闻
 
-[@ziye12](https://github.com/ziye12/JavaScript) - 
+[@ziye12](https://github.com/ziye12/JavaScript) - 返利网、小乐
 
 [@adwktt](https://github.com/adwktt/adwktt) - 步步宝
          
