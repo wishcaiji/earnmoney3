@@ -51,7 +51,7 @@ hotsoonread = type=http-request,pattern=https://(\w+-\w+||\w+).snssdk.com/luckyc
 const jsname='火山视频极速版'
 const $ = Env(jsname)
 const notify = $.isNode() ?require('./sendNotify') : '';
-$.idx = ($.idx = ($.getval("hotsooncount") || "1") - 1) > 0 ? `${$.idx + 1}` : ""; // 账号扩展字符
+$.idx = ($.idx = ($.getval("hotsooncount") || "1") - 1) > 5 ? `${$.idx + 1}` : ""; // 账号扩展字符
 const hotsoonsignheaderArr = [],hotsoonsignkeyArr=[]
 const hotsoonadheaderArr = [],hotsoonadkeyArr=[]
 const hotsoonreadheaderArr = [],hotsoonreadkeyArr=[]
@@ -201,7 +201,7 @@ if (!hotsoonsignheaderArr[0]) {
 if (2>1) {
   while(true){
    console.log(`------------- 共${hotsoonsignheaderArr.length}个账号----------------\n`)
-  for (let i = 2; i < hotsoonsignheaderArr.length; i++) {
+  for (let i = 0; i < hotsoonsignheaderArr.length; i++) {
     if (hotsoonsignheaderArr[i]) {
       message = ''
       hotsoonsignheader = hotsoonsignheaderArr[i];
@@ -228,7 +228,7 @@ if (2>1) {
     }
   }else{
  console.log(`------------- 共${hotsoonsignheaderArr.length}个账号----------------\n`)
-  for (let i = 2; i < hotsoonsignheaderArr.length; i++) {
+  for (let i = 0; i < hotsoonsignheaderArr.length; i++) {
     if (hotsoonsignheaderArr[i]) {
       message = ''
       hotsoonsignheader = hotsoonsignheaderArr[i];
