@@ -6,7 +6,7 @@ name: 火山小视频极速版2
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 21,22,23,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 * * *'
+    - cron: '10 21,22,23,0-15 * * *'
   watch:
     types: started
   repository_dispatch:
@@ -39,12 +39,12 @@ jobs:
         run: |
           node hotsoon.js
         env:
-          HOTSOONSIGNHEADER: ${{ secrets. HOTSOONSIGNHEADER2 }}
-          HOTSOONSIGNKEY: ${{ secrets. HOTSOONSIGNKEY2 }}
-          HOTSOONADHEADER: ${{ secrets. HOTSOONADHEADER2 }}
-          HOTSOONADKEY: ${{ secrets. HOTSOONADKEY2 }}
-          HOTSOONREADHEADER: ${{ secrets. HOTSOONREADHEADER2 }}
-          HOTSOONREADKEY: ${{ secrets. HOTSOONREADKEY2 }}
+          HOTSOONSIGNHEADER: ${{ secrets. HOTSOONSIGNHEADER }}
+          HOTSOONSIGNKEY: ${{ secrets. HOTSOONSIGNKEY }}
+          HOTSOONADHEADER: ${{ secrets. HOTSOONADHEADER }}
+          HOTSOONADKEY: ${{ secrets. HOTSOONADKEY }}
+          HOTSOONREADHEADER: ${{ secrets. HOTSOONREADHEADER }}
+          HOTSOONREADKEY: ${{ secrets. HOTSOONREADKEY }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
