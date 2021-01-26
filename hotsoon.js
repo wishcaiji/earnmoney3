@@ -183,7 +183,7 @@ Object.keys(hotsoonreadheader).forEach((item) => {
     hotsoonreadheaderArr.push($.getdata('hotsoonreadheader'))
     hotsoonreadkeyArr.push($.getdata('hotsoonreadkey'))
     let hotsooncount = ($.getval('hotsooncount') || '1');
-  for (let i = 6; i <= hotsooncount; i++) {
+  for (let i = 2; i <= hotsooncount; i++) {
     hotsoonsignheaderArr.push($.getdata(`hotsoonsignheader${i}`))
     hotsoonsignkeyArr.push($.getdata(`hotsoonsignkey${i}`))
     hotsoonadheaderArr.push($.getdata(`hotsoonadheader${i}`))
@@ -197,7 +197,7 @@ if (!hotsoonsignheaderArr[0]) {
     $.msg($.name, '【提示】请先获取火山视频极速版一cookie')
     return;
   }
-
+for i = 1,5 do {
 if (2>1) {
   while(true){
    console.log(`------------- 共${hotsoonsignheaderArr.length}个账号----------------\n`)
@@ -466,6 +466,7 @@ return new Promise((resolve, reject) => {
     })
    })
   } 
+}
 async function showmsg(){
 if(tz==1){
     if ($.isNode()){
