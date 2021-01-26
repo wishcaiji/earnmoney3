@@ -198,7 +198,7 @@ if (!hotsoonsignheaderArr[0]) {
     return;
   }
 
-if (2>5) {
+if (2>1) {
   while(true){
    console.log(`------------- 共${hotsoonsignheaderArr.length}个账号----------------\n`)
   for (let i = 0; i < hotsoonsignheaderArr.length; i++) {
@@ -210,7 +210,7 @@ if (2>5) {
       hotsoonadkey = hotsoonadkeyArr[i];
       hotsoonreadheader = hotsoonreadheaderArr[i];
       hotsoonreadkey = hotsoonreadkeyArr[i];
-      $.index = i + 1;
+      $.index = i + 2;
       console.log(`\n开始【火山视频极速版${$.index}】`)
       //await userinfo()
       await sign_in()
