@@ -198,7 +198,7 @@ if (!hotsoonsignheaderArr[0]) {
     return;
   }
 
-if (2>1) {
+if (2>5) {
   while(true){
    console.log(`------------- 共${hotsoonsignheaderArr.length}个账号----------------\n`)
   for (let i = 0; i < hotsoonsignheaderArr.length; i++) {
