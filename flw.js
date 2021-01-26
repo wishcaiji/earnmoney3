@@ -14,6 +14,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/JavaScript/main/Task/ziye.
 1.24 优化显示
 1.24 修复判定错误，调整视频延迟，修复node环境错误
 1.25 修复各种判定，设置CASH变量>=0.3，启动天天领现金模块
+1.26 修复延迟判定问题
 
 ⚠️一共4个位置 4个ck  👉 5条 Secrets 
 多账号换行
@@ -80,7 +81,7 @@ const notifyttt = 1// 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 1;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 
 
-$.message = '', $.index = '', COOKIES_SPLIT = '', CASH = '';
+$.message = '', COOKIES_SPLIT = '', CASH = '';
 
 let ksp,zp,qw,sp,ms;
 let dd=0 ;
@@ -108,7 +109,7 @@ const nowTimes = new Date(
 if ($.isNode()) {
  CASH = process.env.FL_CASH || 0;
 } 
-if ($.isNode() && process.env.FL_FLWURL) {
+if ($.isNode() && process.env.FL_flwURL) {
   COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
   console.log(
     `============ cookies分隔符为：${JSON.stringify(
@@ -116,36 +117,36 @@ if ($.isNode() && process.env.FL_FLWURL) {
     )} =============\n`
   );
   if (
-    process.env.FL_FLWURL &&
-    process.env.FL_FLWURL.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwURL &&
+    process.env.FL_flwURL.indexOf(COOKIES_SPLIT) > -1
   ) {
-    middleflwURL = process.env.FL_FLWURL.split(COOKIES_SPLIT);
+    middleflwURL = process.env.FL_flwURL.split(COOKIES_SPLIT);
   } else {
-    middleflwURL = process.env.FL_FLWURL.split();
+    middleflwURL = process.env.FL_flwURL.split();
   } 
   if (
-    process.env.FL_FLWHEADER &&
-    process.env.FL_FLWHEADER.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwHEADER &&
+    process.env.FL_flwHEADER.indexOf(COOKIES_SPLIT) > -1
   ) {
-    middleflwHEADER = process.env.FL_FLWHEADER.split(COOKIES_SPLIT);
+    middleflwHEADER = process.env.FL_flwHEADER.split(COOKIES_SPLIT);
   } else {
-    middleflwHEADER = process.env.FL_FLWHEADER.split();
+    middleflwHEADER = process.env.FL_flwHEADER.split();
   } 
   if (
-    process.env.FL_FLWSPBODY &&
-    process.env.FL_FLWSPBODY.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwspBODY &&
+    process.env.FL_flwspBODY.indexOf(COOKIES_SPLIT) > -1
   ) {
-    middleflwspBODY = process.env.FL_FLWSPBODY.split(COOKIES_SPLIT);
+    middleflwspBODY = process.env.FL_flwspBODY.split(COOKIES_SPLIT);
   } else {
-    middleflwspBODY = process.env.FL_FLWSPBODY.split();
+    middleflwspBODY = process.env.FL_flwspBODY.split();
   } 
   if (
-    process.env.FL_FLWQWBODY &&
-    process.env.FL_FLWQWBODY.indexOf(COOKIES_SPLIT) > -1
+    process.env.FL_flwqwBODY &&
+    process.env.FL_flwqwBODY.indexOf(COOKIES_SPLIT) > -1
   ) {
-    middleflwqwBODY = process.env.FL_FLWQWBODY.split(COOKIES_SPLIT);
+    middleflwqwBODY = process.env.FL_flwqwBODY.split(COOKIES_SPLIT);
   } else {
-    middleflwqwBODY = process.env.FL_FLWQWBODY.split();
+    middleflwqwBODY = process.env.FL_flwqwBODY.split();
   } 
 }
 if (COOKIE.flwurlVal) {
@@ -317,8 +318,8 @@ let cookie_is_live = await flwdl(i + 1);//登录
       await flwtask();//任务列表	  
 if($.flwtask.data&&qw.status==0){
 dd=qw.new_point/2
-}else if($.flwtask.data&&sp.status==0){
-dd=14
+}else if($.flwtask.data&&$.flwtask.data&&sp.complete_count!=7){
+dd=(7-sp.complete_count)*2
 }
 console.log(`📍本次运行等待${dd}秒`)
 if ($.flwtask.data&&ms.status==0){
@@ -326,7 +327,7 @@ if ($.flwtask.data&&ms.status==0){
       await flwzrw();//做任务
       await flwlrw();//领任务
 }
-if ($.flwtask.data&&sp.status==0){       
+if ($.flwtask.data&&sp.complete_count!=7){       
 	   await flwksp();//看视频
       await flwlsp();//领视频
 }
