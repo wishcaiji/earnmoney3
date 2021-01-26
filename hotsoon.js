@@ -201,7 +201,7 @@ if (!hotsoonsignheaderArr[0]) {
 if (2>1) {
   while(true){
    console.log(`------------- 共${hotsoonsignheaderArr.length}个账号----------------\n`)
-  for (let i = 0; i < hotsoonsignheaderArr.length; i++) {
+  for (let i = 2; i < hotsoonsignheaderArr.length; i++) {
     if (hotsoonsignheaderArr[i]) {
       message = ''
       hotsoonsignheader = hotsoonsignheaderArr[i];
@@ -210,7 +210,7 @@ if (2>1) {
       hotsoonadkey = hotsoonadkeyArr[i];
       hotsoonreadheader = hotsoonreadheaderArr[i];
       hotsoonreadkey = hotsoonreadkeyArr[i];
-      $.index = i + 2;
+      $.index = i + 1;
       console.log(`\n开始【火山视频极速版${$.index}】`)
       //await userinfo()
       await sign_in()
@@ -228,7 +228,7 @@ if (2>1) {
     }
   }else{
  console.log(`------------- 共${hotsoonsignheaderArr.length}个账号----------------\n`)
-  for (let i = 0; i < hotsoonsignheaderArr.length; i++) {
+  for (let i = 2; i < hotsoonsignheaderArr.length; i++) {
     if (hotsoonsignheaderArr[i]) {
       message = ''
       hotsoonsignheader = hotsoonsignheaderArr[i];
