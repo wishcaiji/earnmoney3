@@ -51,7 +51,7 @@ hotsoonread = type=http-request,pattern=https://(\w+-\w+||\w+).snssdk.com/luckyc
 const jsname='火山视频极速版'
 const $ = Env(jsname)
 const notify = $.isNode() ?require('./sendNotify') : '';
-$.idx = ($.idx = ($.getval("hotsooncount") || "1") - 1) > 5 ? `${$.idx + 1}` : ""; // 账号扩展字符
+$.idx = ($.idx = ($.getval("hotsooncount") || "1") - 1) > 0 ? `${$.idx + 1}` : ""; // 账号扩展字符
 const hotsoonsignheaderArr = [],hotsoonsignkeyArr=[]
 const hotsoonadheaderArr = [],hotsoonadkeyArr=[]
 const hotsoonreadheaderArr = [],hotsoonreadkeyArr=[]
@@ -183,7 +183,7 @@ Object.keys(hotsoonreadheader).forEach((item) => {
     hotsoonreadheaderArr.push($.getdata('hotsoonreadheader'))
     hotsoonreadkeyArr.push($.getdata('hotsoonreadkey'))
     let hotsooncount = ($.getval('hotsooncount') || '1');
-  for (let i = 2; i <= hotsooncount; i++) {
+  for (let i = 6; i <= hotsooncount; i++) {
     hotsoonsignheaderArr.push($.getdata(`hotsoonsignheader${i}`))
     hotsoonsignkeyArr.push($.getdata(`hotsoonsignkey${i}`))
     hotsoonadheaderArr.push($.getdata(`hotsoonadheader${i}`))
