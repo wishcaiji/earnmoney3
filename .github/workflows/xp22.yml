@@ -27,12 +27,12 @@ jobs:
       - name: npm install
         if: env.XP_iboxpayHEADER
         run: |
-          cd ~/zaqi
+          
           npm install
       - name: '运行 【笑谱】'
         if: env.XP_iboxpayHEADER
         run: |
-          cd ~/zaqi
+          
           node xp.js
         env:
           
