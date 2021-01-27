@@ -39,7 +39,7 @@ jobs:
         run: |
           node xp.js
         env:
-          XP_CASH: ${{ secrets.XP_CASH }}
+          XP_iboxpayHEADER: ${{ secrets.XP_iboxpayHEADER }}
           #VIDEOHEADER: ${{ secrets.VIDEOHEADER2 }}
           #VIDEOBODY: ${{ secrets.VIDEOBODY2 }}
           #GOLDBODY: ${{ secrets.GOLDBODY2}}
