@@ -16,6 +16,7 @@ jobs:
     env:
         XP_iboxpayHEADER: ${{ secrets.XP_iboxpayHEADER }}
         XP_CASH: ${{ secrets.XP_CASH }}
+        XP_live: ${{ secrets.XP_live }}
     steps:
       - name: Checkout
         run: |
