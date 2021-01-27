@@ -39,11 +39,9 @@ jobs:
         run: |
           node xp.js
         env:
-          XP_COOKIES: ${{ secrets.XP_COOKIES }}
-          #XP_iboxpayHEADER: ${{ secrets.XP_iboxpayHEADER }}
-          #VIDEOHEADER: ${{ secrets.VIDEOHEADER2 }}
-          #VIDEOBODY: ${{ secrets.VIDEOBODY2 }}
-          #GOLDBODY: ${{ secrets.GOLDBODY2}}
+          VIDEOHEADER: ${{ secrets.VIDEOHEADER2 }}
+          VIDEOBODY: ${{ secrets.VIDEOBODY2 }}
+          GOLDBODY: ${{ secrets.GOLDBODY2}}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
