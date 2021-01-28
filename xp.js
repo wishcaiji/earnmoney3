@@ -265,6 +265,7 @@ $.log(video)
    })
   } 
 //video
+/*
 function watch_video() {
 return new Promise((resolve, reject) => {
   let watch_videourl ={
@@ -333,6 +334,7 @@ return new Promise((resolve, reject) => {
     })
    })
   } 
+*/
 //livevideo
 function watch_livevideo() {
 let liveids = liveid.replace(/\d{3}$/,Math.round((Math.random() > 0.1 ? Math.random() : (Math.random()+0.1)) *1000));
