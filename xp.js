@@ -39,8 +39,8 @@ var minute=''
 var currentdate = ''
 var newtime = ''
 let headers;
-var gold = "0"
 var live = "0"
+let gold;
 let no,cash;
 var draw = '1';
 var video= '0'
@@ -134,6 +134,7 @@ if (!videoheaderArr[0]) {
   for (let i = 0; i < videoheaderArr.length; i++) {
     if (videoheaderArr[i]) {
       message = ''
+      gold = 0
       videoheader = videoheaderArr[i];
       videobody = videobodyArr[i];
       goldbody = goldbodyArr[i];
@@ -161,6 +162,7 @@ console.log(`========================本次任务执行完毕，休息1分钟===
   for (let i = 0; i < videoheaderArr.length; i++) {
     if (videoheaderArr[i]) {
       message = ''
+      gold = 0
       signheader = videoheaderArr[i];
       videobody = videobodyArr[i];
       $.index = i + 1;
@@ -209,7 +211,7 @@ async function control(){
    if(cash>0 && coins >= cash && hour == 0 && draw == 1){
       await withdraw();
 }
-   if(goldbody && gold == 1){
+   if(gold == 1){
       await watch_goldvideo();
    }else{
       await watch_video();
