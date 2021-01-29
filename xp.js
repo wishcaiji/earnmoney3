@@ -146,15 +146,15 @@ if (!videoheaderArr[0]) {
       await balance()
       await status()
       await day_cash()
-      await control()
+      //await control()
       //await withdraw()
-      //await watch_livevideo()
+      await watch_livevideo()
       await showmsg()
   }
  }
 
 console.log(`========================本次任务执行完毕，休息1分钟==============================\n`);
-      await $.wait(120000)
+      await $.wait(30000)
 
     }
   }else{
@@ -172,9 +172,9 @@ console.log(`========================本次任务执行完毕，休息1分钟===
       await profit()
       await balance()
       await status()
-      await control()
+      //await control()
       //await withdraw()
-      //await watch_livevideo()
+      await watch_livevideo()
       await showmsg()
   }
  }
@@ -353,8 +353,9 @@ return new Promise((resolve, reject) => {
       if(result.resultCode == 1) {
           message += '获得'+result.data.goldCoinAmt+'\n'
       }else{
-          message +='⚠️异常'+result.errorDesc+'\n'
           live = 0;
+          $.msg('⚠️异常'+result.errorDesc+'\n')
+          $.done()
            }
           resolve()
     })
@@ -417,8 +418,10 @@ if ($.isNode()) {
     if (strDate >= 0 && strDate <= 9) {
         strDate = "0" + strDate;
     }
+    let traceid = videoheader.match(/\d{20,20}/)
     newtime = new Date().getTime()
-    headers = videoheader.replace(/\d{21,33}/,`31348493177781673984${newtime}`)
+    let newtraceid = traceid+newtime
+    headers = videoheader.replace(/\d{21,33}/,`${newtraceid}`)
     currentdate = year + seperator1 + month + seperator1 + strDate;
 //$.log(currentdate)
 }
