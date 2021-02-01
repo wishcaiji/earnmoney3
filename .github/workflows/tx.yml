@@ -18,7 +18,6 @@ jobs:
               with:
                   node-version: 10.x
             - name: npm install
-              if: env.USERHEADER
               run: |
                   npm install
             - name: "运行【腾讯自选股】"
