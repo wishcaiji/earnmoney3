@@ -132,7 +132,7 @@ let WXTASKKEY = [];
 
 
 ////////////////////////////////////////////////////////////////////
-
+/*
 
 if ($.isNode()) {
   Object.keys(userheaderVal).forEach((item) => {
@@ -187,7 +187,7 @@ if ($.isNode()) {
   taskkeyArr.push($.getdata('taskkey'));
   wxtaskkeyArr.push($.getdata('wxtaskkey'));
 }
-
+*/
 
 ///////////////////////////////////////////////////////////////////
 
