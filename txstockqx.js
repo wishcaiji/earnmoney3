@@ -76,57 +76,57 @@ if ($.isNode()) {
 }
 
 const userheaderArr = [];
-//let userheaderVal = "";
-const userheaderVal = process.env.USERHEADER
+let userheaderVal = "";
+//const userheaderVal = process.env.USERHEADER
 let USERHEADER = [];
 
 
 
 const userkeyArr = [];
-//let userkeyVal = "";
-const userkeyVal = process.env.USERKEY
+let userkeyVal = "";
+//const userkeyVal = process.env.USERKEY
 let USERKEY = [];
 
 
 
 const cashheaderArr = [];
-//let cashheaderVal = "";
-const cashheaderVal = process.env.CASHHEADER
+let cashheaderVal = "";
+//const cashheaderVal = process.env.CASHHEADER
 let CASHHEADER = [];
 
 
 
 const signheaderArr = [];
-//let signheaderVal = "";
-const signheaderVal = process.env.SINGHEADER
+let signheaderVal = "";
+//const signheaderVal = process.env.SINGHEADER
 let SINGHEADER = [];
 
 
 
 const signkeyArr = [];
-//let signkeyVal = "";
-const signkeyVal = process.env.SINGKEY
+let signkeyVal = "";
+//const signkeyVal = process.env.SINGKEY
 let SINGKEY = [];
 
 
 
 const taskheaderArr = [];
-//let taskheaderVal = "";
-const taskheaderVal = process.env.TASKHEADER
+let taskheaderVal = "";
+//const taskheaderVal = process.env.TASKHEADER
 let TASKHEADER = [];
 
 
 
 const taskkeyArr = [];
-//let taskkeyVal = "";
-const taskkeyVal = process.env.TASKKEY
+let taskkeyVal = "";
+//const taskkeyVal = process.env.TASKKEY
 let TASKKEY = [];
 
 
 
 const wxtaskkeyArr = [];
-//let wxtaskkeyVal = "";
-const wxtaskkeyVal = process.env.WXTASKKEY
+let wxtaskkeyVal = "";
+//const wxtaskkeyVal = process.env.WXTASKKEY
 let WXTASKKEY = [];
 
 
