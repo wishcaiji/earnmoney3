@@ -6,7 +6,7 @@ name: 笑谱ziye2
 on:
   workflow_dispatch:
   schedule:
-     - cron: '10 0-15 * * *'
+     - cron: '30 0-15 * * *'
   watch:
     types: started
 jobs:
