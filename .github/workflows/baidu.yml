@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         if: env.BAIDU_COOKIE
         run: |
-          git clone https://github.com/mantou5050/zaqi.git ~/zaqi
+          git clone https://github.com/Sunert/Scripts.git ~/Scripts
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         if: env.BAIDU_COOKIE
